@@ -77,6 +77,7 @@ def main(args, config):
     np.random.seed(seed)
 
     cudnn.benchmark = True
+    # cudnn.enabled = False  # NOTE: if multiprocessing error, disable cudnn, but it might slow down the training.
 
     build_dataset = misc.load_module(f"datasets.{config.dataset.name}", 'build_dataset')
     dataset_train = build_dataset('train', cfg=config.dataset)

@@ -10,3 +10,4 @@ ftfy
 regex
 pytorch-fid==0.3.0
 scikit-learn==1.4.0
+tensorboard==2.16.2
