@@ -1,0 +1,12 @@
+loguru
+omegaconf
+einops
+opencv-python
+pillow
+imageio==2.33.1
+tqdm
+timm==0.9.16
+ftfy
+regex
+pytorch-fid==0.3.0
+scikit-learn==1.4.0

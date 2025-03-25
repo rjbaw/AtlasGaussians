@@ -1,0 +1,85 @@
+seed: 42
+num_workers: 30
+pin_mem: False
+
+# dataset config
+dataset:
+  name: 'shapenet'
+  data_root: /scratch/cluster/yanght/Projects/AliGeoReg/Dataset/ShapeNetCoreV2/ShapeNet_rendering/input_view76_r1.2/
+  categories: ['03001627']
+  num_views: 6
+  img_size_input: 224
+  img_size_render: 512
+  replica: 1
+
+# network config
+model:
+  deterministic: False  # True
+  norm_first: False
+  # backbone
+  backbone_name: 'dinov2'
+  backbone_type: 'vitb14'
+  backbone_fix: False
+  backbone_out_dim: 768
+  # encoder
+  use_cross_view_refinement: False
+  encoder_layers: 0
+  # others
+  use_flash_attn: False
+  # VAE
+  num_lp: 512
+  lp_dim: 512
+  latent_dim: 64
+  embed_layers_depth: 1  # TODO: might need to increase
+  latent_net_depth: 8
+  use_uv_pe: True
+  bias: True
+  # 3DGS
+  gs:
+    max_range: 0.5  # IMPORTANT NOTE: 0.5 is ONLY used for shapenet chair. We need to compute the statistics for each dataset.
+    isotropic: False  # True
+    const_scale: False
+    const_opacity: False
+
+# loss config
+loss:
+  kl_weight: 0.001
+  cd_weight: 1.0
+  emd_weight: 1.0  # 0.0
+  emd_origin: [-0.5, -0.5, -0.5]  # NOTE: ONLY for shapenet chair
+  emd_scale: 1.0  # NOTE: ONLY for shapenet chair
+  cd_sample_type: 'rand' # 'interp'
+  num_samples_cd: 4  # num of samples per patch for geometry 
+  sample_cd_iter: 4  # only used when cd_sample_type == 'rand', sample sample_cd_iter iterations
+  render_epochs: -1  # 200
+  render_gs_type: 'grid'
+  rgb_weight: 1.0
+  depth_weight: 1.0
+  mask_weight: 1.0
+  lpips_weight: 1.0
+  lpips_epochs: ${.render_epochs}
+  num_samples: 16  # num of samples per patch for gs rendering
+  imagenet_background: False  # Input always use imagenet_background, this flag is only for output rendering
+  scale_std_weight: 0.0
+  expand_weight: 0.0  # 0.1
+
+# training config
+train:
+  lr: 0.0001
+  lr_backbone: 0.00001
+  min_lr: 0.000001
+  warmup_epochs: 50  # 20
+  weight_decay: 0.01
+  clip_grad: 10.0
+  accum_iter: 1  # Accumulate gradient iterations (for increasing the effective batch size under memory constraints)
+  batch_size: 4  # Batch size per GPU (effective batch size is batch_size * accum_iter * # gpus
+  epochs: 1000  # 200
+  eval_interval: 50  # 10
+  save_ckpt_interval: 50  # 10
+  vis_interval: 5
+  use_fp16: True  # False
+
+# test config
+test:
+  batch_size: 16
+
