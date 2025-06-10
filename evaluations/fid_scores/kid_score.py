@@ -157,6 +157,20 @@ def _compute_activations(path, model, batch_size, dims, cuda, model_type,reso,da
                         files.append(f"{path}/{fidx}/{v:05d}/{v:05d}.png")
                 assert len(files) == 24 * len(obj_ids)
 
+            elif 'shapenet' in dataset:
+                from pathlib import Path
+                root = Path(path)
+                # gather only real PNGs under either rgb/ or images/
+                rgb_pngs  = list(root.glob('**/rgb/*.png'))
+                imgs_pngs = list(root.glob('**/images/*.png'))
+                files = [str(p) for p in sorted(rgb_pngs + imgs_pngs)]
+                if not files:
+                    raise RuntimeError(f"No .png files found under {path}")
+                os.makedirs(basepath, exist_ok=True)
+                # directly compute the raw activations for KID
+                act = get_activations(files, model, batch_size, dims, cuda, reso=reso)
+                return act
+
             else:
                 raise NotImplementedError
     
@@ -174,6 +188,18 @@ def _compute_activations(path, model, batch_size, dims, cuda, model_type,reso,da
 
 
 def _compute_activations_new(path, model, batch_size, dims, cuda, model_type,reso,dataset, basepath=None):
+    if 'shapenet' in dataset:
+        from pathlib import Path
+        root = Path(path)
+        rgb_pngs  = list(root.glob('**/rgb/*.png'))
+        imgs_pngs = list(root.glob('**/*.png'))
+        files = [str(p) for p in sorted(rgb_pngs + imgs_pngs)]
+        if not files:
+            raise RuntimeError(f"No .png files found under {path}")
+        os.makedirs(basepath, exist_ok=True)
+        # compute KID activations directly
+        act = get_activations(files, model, batch_size, dims, cuda, reso=reso)
+        return act
     sample_name=path.split('/')[-1]
     print(f"path={path}")
     print(f"basepath={basepath}")
@@ -256,7 +282,11 @@ def _sqn(arr):
 
 def polynomial_mmd_averages(codes_g, codes_r, n_subsets=50, subset_size=1000,
                             ret_var=True, output=sys.stdout, **kernel_args):
+    # m = min(codes_g.shape[0], codes_r.shape[0])
     m = min(codes_g.shape[0], codes_r.shape[0])
+    if subset_size > m:
+        subset_size = m
+
     mmds = np.zeros(n_subsets)
     if ret_var:
         vars = np.zeros(n_subsets)

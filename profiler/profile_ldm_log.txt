@@ -1,0 +1,161 @@
+Not using distributed mode
+[17:33:20.030068] job dir: /workspace/home/AtlasGaussians
+[17:33:20.030098] Namespace(batch_size=27,
+epochs=1000,
+replica=8,
+accum_iter=1,
+model='kl_d512_m512_l16_d24_edm',
+config_ae='config/shapenet/train_car_full.yaml',
+ae_pth='output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth',
+clip_grad=None,
+weight_decay=0.05,
+lr=0.0001,
+layer_decay=0.75,
+min_lr=1e-06,
+warmup_epochs=50,
+log_dir='output/ldm/shapenet/car',
+latent_dir='output/vae/shapenet/vae_car_full/inference/latents/epoch_1000',
+device='cuda',
+seed=0,
+resume='',
+start_epoch=0,
+eval=False,
+dist_eval=False,
+num_workers=10,
+pin_mem=True,
+world_size=1,
+local_rank=-1,
+dist_on_itp=False,
+dist_url='env://',
+output_dir='output/ldm/shapenet/car/ckpt',
+distributed=False)
+[17:33:20.043480] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7f9906750650>
+[17:33:20.048613] Copied .gitignore to output/ldm/shapenet/car/code/.gitignore
+[17:33:20.048662] Copied README.md to output/ldm/shapenet/car/code/README.md
+[17:33:20.048704] Copied config/objaverse/train_18k_base.yaml to output/ldm/shapenet/car/code/config/objaverse/train_18k_base.yaml
+[17:33:20.048736] Copied config/objaverse/train_18k_full.yaml to output/ldm/shapenet/car/code/config/objaverse/train_18k_full.yaml
+[17:33:20.048767] Copied config/shapenet/train_car_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_car_base.yaml
+[17:33:20.048797] Copied config/shapenet/train_car_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_car_full.yaml
+[17:33:20.048827] Copied config/shapenet/train_chair_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_chair_base.yaml
+[17:33:20.048857] Copied config/shapenet/train_chair_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_chair_full.yaml
+[17:33:20.048886] Copied config/shapenet/train_plane_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_plane_base.yaml
+[17:33:20.048915] Copied config/shapenet/train_plane_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_plane_full.yaml
+[17:33:20.048957] Copied datasets/objaverse.py to output/ldm/shapenet/car/code/datasets/objaverse.py
+[17:33:20.048991] Copied datasets/shapenet.py to output/ldm/shapenet/car/code/datasets/shapenet.py
+[17:33:20.049023] Copied datasets/splits/shapenet/02691156_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_test.txt
+[17:33:20.049052] Copied datasets/splits/shapenet/02691156_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_train.txt
+[17:33:20.049082] Copied datasets/splits/shapenet/02958343_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02958343_test.txt
+[17:33:20.049112] Copied datasets/splits/shapenet/02958343_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02958343_train.txt
+[17:33:20.049141] Copied datasets/splits/shapenet/03001627_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/03001627_test.txt
+[17:33:20.049170] Copied datasets/splits/shapenet/03001627_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/03001627_train.txt
+[17:33:20.049211] Copied engine_ae.py to output/ldm/shapenet/car/code/engine_ae.py
+[17:33:20.049242] Copied engine_class_cond.py to output/ldm/shapenet/car/code/engine_class_cond.py
+[17:33:20.049284] Copied evaluations/fid_scores/fid.sh to output/ldm/shapenet/car/code/evaluations/fid_scores/fid.sh
+[17:33:20.049321] Copied evaluations/fid_scores/fid_score.py to output/ldm/shapenet/car/code/evaluations/fid_scores/fid_score.py
+[17:33:20.049352] Copied evaluations/fid_scores/kid.sh to output/ldm/shapenet/car/code/evaluations/fid_scores/kid.sh
+[17:33:20.049394] Copied evaluations/fid_scores/kid_score.py to output/ldm/shapenet/car/code/evaluations/fid_scores/kid_score.py
+[17:33:20.049427] Copied main_ae.py to output/ldm/shapenet/car/code/main_ae.py
+[17:33:20.049470] Copied main_class_cond.py to output/ldm/shapenet/car/code/main_class_cond.py
+[17:33:20.049498] Copied requirements.txt to output/ldm/shapenet/car/code/requirements.txt
+[17:33:20.049539] Copied sample_class_cond_cfg.py to output/ldm/shapenet/car/code/sample_class_cond_cfg.py
+[17:33:20.049570] Copied scripts/ldm/train_dgx.sh to output/ldm/shapenet/car/code/scripts/ldm/train_dgx.sh
+[17:33:20.049600] Copied scripts/vae/train_dgx.sh to output/ldm/shapenet/car/code/scripts/vae/train_dgx.sh
+[17:33:20.049630] Copied util/emd/README.md to output/ldm/shapenet/car/code/util/emd/README.md
+[17:33:20.049671] Copied util/misc.py to output/ldm/shapenet/car/code/util/misc.py
+[17:33:21.875946] Loading autoencoder output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth
+[17:33:23.574350] Model = EDMPrecond(
+  (model): LatentArrayTransformer(
+    (proj_in): Linear(in_features=16, out_features=512, bias=False)
+    (transformer_blocks): ModuleList(
+      (0-23): 24 x BasicTransformerBlock(
+        (attn1): CrossAttention(
+          (to_q): Linear(in_features=512, out_features=512, bias=False)
+          (to_k): Linear(in_features=512, out_features=512, bias=False)
+          (to_v): Linear(in_features=512, out_features=512, bias=False)
+          (to_out): Sequential(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+            (1): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (ff): FeedForward(
+          (net): Sequential(
+            (0): GEGLU(
+              (proj): Linear(in_features=512, out_features=4096, bias=True)
+            )
+            (1): Dropout(p=0.0, inplace=False)
+            (2): Linear(in_features=2048, out_features=512, bias=True)
+          )
+        )
+        (attn2): CrossAttention(
+          (to_q): Linear(in_features=512, out_features=512, bias=False)
+          (to_k): Linear(in_features=512, out_features=512, bias=False)
+          (to_v): Linear(in_features=512, out_features=512, bias=False)
+          (to_out): Sequential(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+            (1): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (norm1): AdaLayerNorm(
+          (silu): SiLU()
+          (linear): Linear(in_features=512, out_features=1024, bias=True)
+          (layernorm): LayerNorm((512,), eps=1e-05, elementwise_affine=False)
+        )
+        (norm2): AdaLayerNorm(
+          (silu): SiLU()
+          (linear): Linear(in_features=512, out_features=1024, bias=True)
+          (layernorm): LayerNorm((512,), eps=1e-05, elementwise_affine=False)
+        )
+        (norm3): AdaLayerNorm(
+          (silu): SiLU()
+          (linear): Linear(in_features=512, out_features=1024, bias=True)
+          (layernorm): LayerNorm((512,), eps=1e-05, elementwise_affine=False)
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (ls2): Identity()
+        (drop_path2): Identity()
+        (ls3): Identity()
+        (drop_path3): Identity()
+      )
+    )
+    (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    (proj_out): Linear(in_features=512, out_features=16, bias=False)
+    (map_noise): PositionalEmbedding()
+    (map_layer0): Linear(in_features=256, out_features=512, bias=True)
+    (map_layer1): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+[17:33:23.574367] number of params (M): 164.20
+[17:33:23.574372] actual lr: 1.00e-04
+[17:33:23.574374] accumulate grad iterations: 1
+[17:33:23.574375] effective batch size: 27
+[17:33:23.575185] criterion = <models_class_cond.EDMLoss object at 0x7f98f80bb140>
+[17:33:23.575192] Start training for 1000 epochs
+[17:33:23.586853] log_dir: output/ldm/shapenet/car
+[17:33:24.414938] Epoch: [0]  [0/2]  eta: 0:00:01  lr: 0.000000  loss: 0.9523 (0.9523)  time: 0.7566  data: 0.1493  max mem: 27316
+[17:33:24.833290] Epoch: [0]  [1/2]  eta: 0:00:00  lr: 0.000001  loss: 0.9507 (0.9515)  time: 0.5873  data: 0.0747  max mem: 28539
+[17:33:24.864675] Epoch: [0] Total time: 0:00:01 (0.6037 s / it)
+[17:33:24.864712] Averaged stats: lr: 0.000001  loss: 0.9507 (0.9515)
+[17:33:26.453309] Test:  [0/2]  eta: 0:00:00  loss: 0.9954 (0.9954)  time: 0.1625  data: 0.1337  max mem: 28539
+[17:33:26.472050] Test:  [1/2]  eta: 0:00:00  loss: 0.9954 (0.9969)  time: 0.0905  data: 0.0669  max mem: 28539
+[17:33:26.502773] Test: Total time: 0:00:00 (0.1062 s / it)
+[17:33:26.502823] * loss 0.997
+[17:33:26.502927] loss of the network on the 2 test images: 0.997
+[17:33:34.129090] -------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg       CPU Mem  Self CPU Mem      CUDA Mem  Self CUDA Mem    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                          train_epoch_0         0.00%       0.000us         0.00%       0.000us       0.000us        1.245s       141.08%        1.245s        1.245s           0 b           0 b           0 b           0 b             1  
+                                          train_epoch_0        13.26%     245.392ms        69.36%        1.284s        1.284s       0.000us         0.00%     611.236ms     611.236ms       1.91 Kb      -1.69 Mb       1.24 Gb     -84.38 Gb             1  
+                                           aten::linear         0.13%       2.334ms         7.03%     130.035ms      95.614us       0.000us         0.00%     467.242ms     343.561us           0 b           0 b      19.95 Gb           0 b          1360  
+                                            aten::addmm         3.60%      66.574ms         5.85%     108.189ms     139.419us     290.077ms        32.86%     430.468ms     554.727us           0 b           0 b      14.53 Gb      13.77 Gb           776  
+                                               aten::mm         0.67%      12.313ms         5.63%     104.271ms      59.583us     237.533ms        26.91%     240.846ms     137.626us           0 b           0 b      20.82 Gb      20.82 Gb          1750  
+void sgemm_largek_lds64<true, false, 5, 5, 4, 4, 4, ...         0.00%       0.000us         0.00%       0.000us       0.000us     230.361ms        26.10%     230.361ms       1.163ms           0 b           0 b           0 b           0 b           198  
+                                           eval_epoch_0         0.00%       0.000us         0.00%       0.000us       0.000us     186.016ms        21.07%     186.016ms     186.016ms           0 b           0 b           0 b           0 b             1  
+                                    Command Buffer Full        16.37%     302.988ms        16.37%     302.988ms     152.793us     159.870ms        18.11%     159.870ms      80.620us           0 b           0 b           0 b           0 b          1983  
+    autograd::engine::evaluate_function: AddmmBackward0         0.06%       1.185ms         6.33%     117.174ms     344.630us       0.000us         0.00%     153.536ms     451.576us           0 b           0 b      -9.18 Gb     -19.05 Gb           340  
+                                         AddmmBackward0         0.05%     887.318us         4.26%      78.745ms     231.604us       0.000us         0.00%     143.185ms     421.131us           0 b           0 b       9.87 Gb           0 b           340  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 1.850s
+Self CUDA time total: 882.673ms
+
+[17:33:34.129113] Training time 0:00:10

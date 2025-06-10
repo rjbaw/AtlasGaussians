@@ -145,12 +145,12 @@ class ShapeNet(data.Dataset):
         world2cams = []
         for ind in ids:
             ##### Read depth
-            depth = iio.imread(f"{self.data_root}/{category}/{model}/images/{ind:06d}_depth0001.exr")
+            depth = iio.imread(f"{self.data_root}/{category}/{model}/rgb/{ind:06d}_depth0001.exr")
             depth = np.nan_to_num(depth, posinf=0, neginf=0)
             depth = depth[:, :, 0:1]  # [H, W, 1]
 
             #### Read raw RGB
-            rgba = iio.imread(f"{self.data_root}/{category}/{model}/images/{ind:06d}.png") / 255.0  # [H, W, 4]
+            rgba = iio.imread(f"{self.data_root}/{category}/{model}/rgb/{ind:06d}.png") / 255.0  # [H, W, 4]
             rgb = rgba[:, :, :3]  # [H, W, 3]
 
             #### Read mask. Use depth in shapenet since no alpha available

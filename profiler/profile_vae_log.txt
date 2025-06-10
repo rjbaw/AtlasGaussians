@@ -1,0 +1,591 @@
+Not using distributed mode
+[17:32:56.087439] job dir: /workspace/home/AtlasGaussians
+[17:32:56.087458] Namespace(config_path='config/shapenet/train_car_full.yaml',
+log_dir='output/vae/shapenet/vae_car_full',
+resume='output/vae/shapenet/vae_car_full/ckpt/checkpoint-50_model_only.pth',
+start_epoch=0,
+eval=False,
+infer=False,
+dist_eval=False,
+device='cuda',
+distributed=False,
+world_size=1,
+local_rank=-1,
+dist_url='env://',
+output_dir='output/vae/shapenet/vae_car_full/ckpt')
+[17:32:56.109403] ['02958343']
+[17:32:56.109487] ['02958343']
+[17:32:56.115211] Copied .gitignore to output/vae/shapenet/vae_car_full/code/.gitignore
+[17:32:56.115311] Copied README.md to output/vae/shapenet/vae_car_full/code/README.md
+[17:32:56.115388] Copied config/objaverse/train_18k_base.yaml to output/vae/shapenet/vae_car_full/code/config/objaverse/train_18k_base.yaml
+[17:32:56.115452] Copied config/objaverse/train_18k_full.yaml to output/vae/shapenet/vae_car_full/code/config/objaverse/train_18k_full.yaml
+[17:32:56.115517] Copied config/shapenet/train_car_base.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_car_base.yaml
+[17:32:56.115577] Copied config/shapenet/train_car_full.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_car_full.yaml
+[17:32:56.115634] Copied config/shapenet/train_chair_base.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_chair_base.yaml
+[17:32:56.115682] Copied config/shapenet/train_chair_full.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_chair_full.yaml
+[17:32:56.115711] Copied config/shapenet/train_plane_base.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_plane_base.yaml
+[17:32:56.115740] Copied config/shapenet/train_plane_full.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_plane_full.yaml
+[17:32:56.115786] Copied datasets/objaverse.py to output/vae/shapenet/vae_car_full/code/datasets/objaverse.py
+[17:32:56.115820] Copied datasets/shapenet.py to output/vae/shapenet/vae_car_full/code/datasets/shapenet.py
+[17:32:56.115853] Copied datasets/splits/shapenet/02691156_test.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02691156_test.txt
+[17:32:56.115883] Copied datasets/splits/shapenet/02691156_train.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02691156_train.txt
+[17:32:56.115913] Copied datasets/splits/shapenet/02958343_test.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02958343_test.txt
+[17:32:56.115942] Copied datasets/splits/shapenet/02958343_train.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02958343_train.txt
+[17:32:56.115971] Copied datasets/splits/shapenet/03001627_test.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/03001627_test.txt
+[17:32:56.116000] Copied datasets/splits/shapenet/03001627_train.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/03001627_train.txt
+[17:32:56.116042] Copied engine_ae.py to output/vae/shapenet/vae_car_full/code/engine_ae.py
+[17:32:56.116073] Copied engine_class_cond.py to output/vae/shapenet/vae_car_full/code/engine_class_cond.py
+[17:32:56.116104] Copied evaluations/fid_scores/fid.sh to output/vae/shapenet/vae_car_full/code/evaluations/fid_scores/fid.sh
+[17:32:56.116144] Copied evaluations/fid_scores/fid_score.py to output/vae/shapenet/vae_car_full/code/evaluations/fid_scores/fid_score.py
+[17:32:56.116174] Copied evaluations/fid_scores/kid.sh to output/vae/shapenet/vae_car_full/code/evaluations/fid_scores/kid.sh
+[17:32:56.116214] Copied evaluations/fid_scores/kid_score.py to output/vae/shapenet/vae_car_full/code/evaluations/fid_scores/kid_score.py
+[17:32:56.116246] Copied main_ae.py to output/vae/shapenet/vae_car_full/code/main_ae.py
+[17:32:56.116288] Copied main_class_cond.py to output/vae/shapenet/vae_car_full/code/main_class_cond.py
+[17:32:56.116318] Copied requirements.txt to output/vae/shapenet/vae_car_full/code/requirements.txt
+[17:32:56.116349] Copied sample_class_cond_cfg.py to output/vae/shapenet/vae_car_full/code/sample_class_cond_cfg.py
+[17:32:56.116381] Copied scripts/ldm/train_dgx.sh to output/vae/shapenet/vae_car_full/code/scripts/ldm/train_dgx.sh
+[17:32:56.116411] Copied scripts/vae/train_dgx.sh to output/vae/shapenet/vae_car_full/code/scripts/vae/train_dgx.sh
+[17:32:56.116442] Copied util/emd/README.md to output/vae/shapenet/vae_car_full/code/util/emd/README.md
+[17:32:56.116483] Copied util/misc.py to output/vae/shapenet/vae_car_full/code/util/misc.py
+[17:32:57.693105] Model = KLAutoEncoder(
+  (img_encoder): LEAP_Encoder(
+    (backbone): DinoVisionTransformer(
+      (patch_embed): PatchEmbed(
+        (proj): Conv2d(3, 768, kernel_size=(14, 14), stride=(14, 14))
+        (norm): Identity()
+      )
+      (blocks): ModuleList(
+        (0-11): 12 x NestedTensorBlock(
+          (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+          (attn): MemEffAttention(
+            (qkv): Linear(in_features=768, out_features=2304, bias=True)
+            (attn_drop): Dropout(p=0.0, inplace=False)
+            (proj): Linear(in_features=768, out_features=768, bias=True)
+            (proj_drop): Dropout(p=0.0, inplace=False)
+          )
+          (ls1): LayerScale()
+          (drop_path1): Identity()
+          (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+          (mlp): Mlp(
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (act): GELU(approximate='none')
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (drop): Dropout(p=0.0, inplace=False)
+          )
+          (ls2): LayerScale()
+          (drop_path2): Identity()
+        )
+      )
+      (norm): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+      (head): Identity()
+    )
+    (backbone_out): BackboneOutBlock()
+  )
+  (point_embed): PointFourierEncoder(
+    (mlp): Linear(in_features=51, out_features=512, bias=True)
+  )
+  (pc_encoder): TransformerDecoderLayer(
+    (self_attn): MultiheadAttention(
+      (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+    )
+    (multihead_attn): MultiheadAttention(
+      (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+    )
+    (linear1): Linear(in_features=512, out_features=2048, bias=True)
+    (dropout): Dropout(p=0.0, inplace=False)
+    (linear2): Linear(in_features=2048, out_features=512, bias=True)
+    (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    (dropout1): Dropout(p=0.0, inplace=False)
+    (dropout2): Dropout(p=0.0, inplace=False)
+    (dropout3): Dropout(p=0.0, inplace=False)
+  )
+  (embed_layers): ModuleList(
+    (0): TransformerDecoderLayerAda(
+      (self_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+      )
+      (multihead_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+      )
+      (linear1): Linear(in_features=512, out_features=2048, bias=True)
+      (dropout): Dropout(p=0.0, inplace=False)
+      (linear2): Linear(in_features=2048, out_features=512, bias=True)
+      (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (dropout1): Dropout(p=0.0, inplace=False)
+      (dropout2): Dropout(p=0.0, inplace=False)
+      (dropout3): Dropout(p=0.0, inplace=False)
+    )
+  )
+  (enc_layers): Sequential(
+    (0): TransformerEncoderLayer(
+      (self_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+      )
+      (linear1): Linear(in_features=512, out_features=2048, bias=True)
+      (dropout): Dropout(p=0.0, inplace=False)
+      (linear2): Linear(in_features=2048, out_features=512, bias=True)
+      (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (dropout1): Dropout(p=0.0, inplace=False)
+      (dropout2): Dropout(p=0.0, inplace=False)
+    )
+    (1): TransformerEncoderLayer(
+      (self_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+      )
+      (linear1): Linear(in_features=512, out_features=2048, bias=True)
+      (dropout): Dropout(p=0.0, inplace=False)
+      (linear2): Linear(in_features=2048, out_features=512, bias=True)
+      (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (dropout1): Dropout(p=0.0, inplace=False)
+      (dropout2): Dropout(p=0.0, inplace=False)
+    )
+    (2): TransformerEncoderLayer(
+      (self_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+      )
+      (linear1): Linear(in_features=512, out_features=2048, bias=True)
+      (dropout): Dropout(p=0.0, inplace=False)
+      (linear2): Linear(in_features=2048, out_features=512, bias=True)
+      (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (dropout1): Dropout(p=0.0, inplace=False)
+      (dropout2): Dropout(p=0.0, inplace=False)
+    )
+  )
+  (mean_fc): Linear(in_features=512, out_features=16, bias=True)
+  (logvar_fc): Linear(in_features=512, out_features=16, bias=True)
+  (proj): Linear(in_features=16, out_features=512, bias=True)
+  (latent_net): LatentNet(
+    (ca_layer): TransformerDecoderLayer(
+      (self_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+      )
+      (multihead_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+      )
+      (linear1): Linear(in_features=512, out_features=2048, bias=True)
+      (dropout): Dropout(p=0.0, inplace=False)
+      (linear2): Linear(in_features=2048, out_features=512, bias=True)
+      (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (norm3): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+      (dropout1): Dropout(p=0.0, inplace=False)
+      (dropout2): Dropout(p=0.0, inplace=False)
+      (dropout3): Dropout(p=0.0, inplace=False)
+    )
+    (layers): ModuleList(
+      (0-7): 8 x TransformerEncoderLayer(
+        (self_attn): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=512, out_features=512, bias=True)
+        )
+        (linear1): Linear(in_features=512, out_features=2048, bias=True)
+        (dropout): Dropout(p=0.0, inplace=False)
+        (linear2): Linear(in_features=2048, out_features=512, bias=True)
+        (norm1): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.0, inplace=False)
+        (dropout2): Dropout(p=0.0, inplace=False)
+      )
+    )
+    (up_fc): Linear(in_features=512, out_features=1024, bias=True)
+    (up_layers): ModuleList(
+      (0-3): 4 x TransformerEncoderLayer(
+        (self_attn): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+        )
+        (linear1): Linear(in_features=256, out_features=1024, bias=True)
+        (dropout): Dropout(p=0.0, inplace=False)
+        (linear2): Linear(in_features=1024, out_features=256, bias=True)
+        (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.0, inplace=False)
+        (dropout2): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (lp_net): LPNet(
+    (point_fourier_encoder): PointFourierEncoder(
+      (mlp): Linear(in_features=34, out_features=128, bias=True)
+    )
+    (lps_net): LPSNet(
+      (up_fc): Linear(in_features=256, out_features=512, bias=True)
+      (global_fc): Linear(in_features=256, out_features=128, bias=True)
+      (anchor_fc): Linear(in_features=256, out_features=128, bias=True)
+      (geom_layers): Sequential(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (attr_layers): Sequential(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (global_layers): Sequential(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (anchor_layers): Sequential(
+        (0): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (1): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (2): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+        (3): TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+          )
+          (linear1): Linear(in_features=128, out_features=512, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=512, out_features=128, bias=True)
+          (norm1): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.0, inplace=False)
+          (dropout2): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (to_anchor): Sequential(
+        (0): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+        (1): Linear(in_features=128, out_features=128, bias=True)
+        (2): GELU(approximate='none')
+        (3): Linear(in_features=128, out_features=3, bias=True)
+      )
+    )
+    (gs_decoder_geom): GS_Decoder(
+      (decoder_cross_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+      )
+      (norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      (to_outputs): Sequential(
+        (0): Linear(in_features=128, out_features=128, bias=True)
+        (1): GELU(approximate='none')
+      )
+      (to_pos): Linear(in_features=128, out_features=3, bias=True)
+      (to_opacity): Linear(in_features=128, out_features=1, bias=True)
+      (to_scale): Linear(in_features=128, out_features=3, bias=True)
+      (to_rotation): Linear(in_features=128, out_features=4, bias=True)
+      (to_rgb): Linear(in_features=128, out_features=3, bias=True)
+    )
+    (gs_decoder_attr): GS_Decoder(
+      (decoder_cross_attn): MultiheadAttention(
+        (out_proj): NonDynamicallyQuantizableLinear(in_features=128, out_features=128, bias=True)
+      )
+      (norm): LayerNorm((128,), eps=1e-05, elementwise_affine=True)
+      (to_outputs): Sequential(
+        (0): Linear(in_features=128, out_features=128, bias=True)
+        (1): GELU(approximate='none')
+      )
+      (to_pos): Linear(in_features=128, out_features=3, bias=True)
+      (to_opacity): Linear(in_features=128, out_features=1, bias=True)
+      (to_scale): Linear(in_features=128, out_features=3, bias=True)
+      (to_rotation): Linear(in_features=128, out_features=4, bias=True)
+      (to_rgb): Linear(in_features=128, out_features=3, bias=True)
+    )
+  )
+  (lpips_loss): LPIPS(
+    (net): vgg16(
+      (slice1): Sequential(
+        (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (1): ReLU(inplace=True)
+        (2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (3): ReLU(inplace=True)
+      )
+      (slice2): Sequential(
+        (4): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (5): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (6): ReLU(inplace=True)
+        (7): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (8): ReLU(inplace=True)
+      )
+      (slice3): Sequential(
+        (9): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (10): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (11): ReLU(inplace=True)
+        (12): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (13): ReLU(inplace=True)
+        (14): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (15): ReLU(inplace=True)
+      )
+      (slice4): Sequential(
+        (16): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (17): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (18): ReLU(inplace=True)
+        (19): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (20): ReLU(inplace=True)
+        (21): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (22): ReLU(inplace=True)
+      )
+      (slice5): Sequential(
+        (23): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
+        (24): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (25): ReLU(inplace=True)
+        (26): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (27): ReLU(inplace=True)
+        (28): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+        (29): ReLU(inplace=True)
+      )
+    )
+    (scaling_layer): ScalingLayer()
+    (lin0): NetLinLayer(
+      (model): Sequential(
+        (0): Dropout(p=0.5, inplace=False)
+        (1): Conv2d(64, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (lin1): NetLinLayer(
+      (model): Sequential(
+        (0): Dropout(p=0.5, inplace=False)
+        (1): Conv2d(128, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (lin2): NetLinLayer(
+      (model): Sequential(
+        (0): Dropout(p=0.5, inplace=False)
+        (1): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (lin3): NetLinLayer(
+      (model): Sequential(
+        (0): Dropout(p=0.5, inplace=False)
+        (1): Conv2d(512, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (lin4): NetLinLayer(
+      (model): Sequential(
+        (0): Dropout(p=0.5, inplace=False)
+        (1): Conv2d(512, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (lins): ModuleList(
+      (0): NetLinLayer(
+        (model): Sequential(
+          (0): Dropout(p=0.5, inplace=False)
+          (1): Conv2d(64, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+      (1): NetLinLayer(
+        (model): Sequential(
+          (0): Dropout(p=0.5, inplace=False)
+          (1): Conv2d(128, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+      (2): NetLinLayer(
+        (model): Sequential(
+          (0): Dropout(p=0.5, inplace=False)
+          (1): Conv2d(256, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+      (3-4): 2 x NetLinLayer(
+        (model): Sequential(
+          (0): Dropout(p=0.5, inplace=False)
+          (1): Conv2d(512, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+[17:32:57.693169] number of params (M): 141.69
+[17:32:57.693239] actual lr: 1.00e-04
+[17:32:57.693248] accumulate grad iterations: 1
+[17:32:57.693250] effective batch size: 4
+[17:32:57.694464] criterion = BCEWithLogitsLoss()
+[17:32:57.838536] Resume checkpoint output/vae/shapenet/vae_car_full/ckpt/checkpoint-50_model_only.pth
+[17:32:57.847444] Start training for 1000 epochs
+[17:32:57.858613] log_dir: output/vae/shapenet/vae_car_full
+[17:33:01.863774] Epoch: [0]  [0/2]  eta: 0:00:07  lr: 0.000000  loss_kl: 0.1147 (0.1147)  loss_lp0: 0.0018 (0.0018)  loss_lp1: 0.0018 (0.0018)  loss_lp2: 0.0016 (0.0016)  loss_lp_render: 0.0016 (0.0016)  loss_lp_emd0: 0.0407 (0.0407)  loss_lp_emd2: 0.0335 (0.0335)  loss_lp_emd_render: 0.0332 (0.0332)  loss_render_rgb: 0.0078 (0.0078)  loss_render_depth: 0.1180 (0.1180)  loss_render_mask: 0.1248 (0.1248)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2323 (0.2323)  loss: 0.5972 (0.5972)  psnr: 21.1279 (21.1279)  time: 3.9777  data: 0.7878  max mem: 17339
+[17:33:02.383654] Epoch: [0]  [1/2]  eta: 0:00:02  lr: 0.000001  loss_kl: 0.1142 (0.1144)  loss_lp0: 0.0015 (0.0017)  loss_lp1: 0.0015 (0.0016)  loss_lp2: 0.0013 (0.0015)  loss_lp_render: 0.0013 (0.0015)  loss_lp_emd0: 0.0338 (0.0373)  loss_lp_emd2: 0.0286 (0.0311)  loss_lp_emd_render: 0.0286 (0.0309)  loss_render_rgb: 0.0074 (0.0076)  loss_render_depth: 0.1169 (0.1175)  loss_render_mask: 0.1244 (0.1246)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2323 (0.2328)  loss: 0.5786 (0.5879)  psnr: 21.1279 (21.2188)  time: 2.2480  data: 0.3948  max mem: 17339
+[17:33:02.408696] Epoch: [0] Total time: 0:00:04 (2.2750 s / it)
+[17:33:02.412876] Averaged stats: lr: 0.000001  loss_kl: 0.1142 (0.1144)  loss_lp0: 0.0015 (0.0017)  loss_lp1: 0.0015 (0.0016)  loss_lp2: 0.0013 (0.0015)  loss_lp_render: 0.0013 (0.0015)  loss_lp_emd0: 0.0338 (0.0373)  loss_lp_emd2: 0.0286 (0.0311)  loss_lp_emd_render: 0.0286 (0.0309)  loss_render_rgb: 0.0074 (0.0076)  loss_render_depth: 0.1169 (0.1175)  loss_render_mask: 0.1244 (0.1246)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2323 (0.2328)  loss: 0.5786 (0.5879)  psnr: 21.1279 (21.2188)
+[17:33:05.744656] Test:  [0/1]  eta: 0:00:02  loss_kl: 0.1696 (0.1696)  loss_lp0: 0.0011 (0.0011)  loss_lp1: 0.0011 (0.0011)  loss_lp2: 0.0010 (0.0010)  loss_lp_render: 0.0010 (0.0010)  loss_lp_emd0: 0.0332 (0.0332)  loss_lp_emd2: 0.0274 (0.0274)  loss_lp_emd_render: 0.0275 (0.0275)  loss_render_rgb: 0.0070 (0.0070)  loss_render_depth: 0.0980 (0.0980)  loss_render_mask: 0.1044 (0.1044)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2187 (0.2187)  loss: 0.5205 (0.5205)  psnr: 21.5398 (21.5398)  time: 2.0335  data: 1.1677  max mem: 17339
+[17:33:05.794365] Test: Total time: 0:00:02 (2.0840 s / it)
+[17:33:16.851144] -------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg       CPU Mem  Self CPU Mem      CUDA Mem  Self CUDA Mem    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                          train_epoch_0         0.00%       0.000us         0.00%       0.000us       0.000us        6.438s       300.55%        6.438s        1.288s           0 b           0 b           0 b           0 b             5  
+                                          train_epoch_0        26.44%        1.926s        62.60%        4.560s        4.560s       0.000us         0.00%        2.319s        2.319s       2.59 Kb    -230.76 Mb       1.09 Gb     -29.17 Gb             1  
+                                           eval_epoch_0         0.00%       0.000us         0.00%       0.000us       0.000us        2.202s       102.80%        2.202s     440.395ms           0 b           0 b           0 b           0 b             5  
+                                           aten::conv2d         0.00%     272.445us        20.54%        1.496s      15.113ms       0.000us         0.00%        1.805s      18.229ms           0 b           0 b       5.33 Gb      -2.85 Mb            99  
+                                      aten::convolution         0.00%     352.939us        19.20%        1.399s      14.572ms       0.000us         0.00%        1.800s      18.750ms           0 b           0 b       5.30 Gb           0 b            96  
+                                     aten::_convolution         0.01%     727.249us        19.20%        1.399s      14.569ms       0.000us         0.00%        1.800s      18.750ms           0 b           0 b       5.30 Gb      -9.00 Mb            96  
+                                aten::cudnn_convolution         0.85%      61.648ms        19.09%        1.391s      14.486ms     701.921ms        32.77%        1.794s      18.688ms           0 b           0 b       5.31 Gb       5.14 Gb            96  
+                                            emdFunction         0.02%       1.295ms         0.12%       8.655ms     961.712us     834.520ms        38.96%     834.621ms      92.736ms           0 b           0 b       3.28 Mb     -14.82 Mb             9  
+Bid(int, int, float const*, float const*, float, int...         0.00%       0.000us         0.00%       0.000us       0.000us     829.840ms        38.74%     829.840ms       1.844ms           0 b           0 b           0 b           0 b           450  
+                                  Lazy Function Loading         0.20%      14.632ms         0.20%      14.632ms      40.646us     562.065ms        26.24%     562.065ms       1.561ms           0 b           0 b           0 b           0 b           360  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 7.285s
+Self CUDA time total: 2.142s
+
+[17:33:16.851168] Training time 0:00:19

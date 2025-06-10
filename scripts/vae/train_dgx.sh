@@ -1,9 +1,10 @@
 #!/bin/bash
 
 ########################## VAE training Stage 1 ##########################
-log_dir=output/vae/objaverse/vae_L16_ep001_7B7_kl1e-4
+log_dir=output/vae/objaverse/vae_L16_ep001_7B7_kl1e-4-test
 config_path=config/objaverse/train_18k_base.yaml
-torchrun --nproc_per_node=7 main_ae.py --distributed --config ${config_path} --log_dir ${log_dir}
+#torchrun --nproc_per_node=7 main_ae.py --distributed --config ${config_path} --log_dir ${log_dir}
+python main_ae.py --config ${config_path} --log_dir ${log_dir}
 
 
 ########################## VAE training preparation for Stage 2 ##########################

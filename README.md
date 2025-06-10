@@ -6,15 +6,13 @@ Code for ICLR 2025 paper: [Atlas Gaussians Diffusion for 3D Generation](https://
 ## Environment
 
 ```
-conda create -n atlas python=3.11.7
-pip install numpy==1.26.3
-pip install torch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 --index-url https://download.pytorch.org/whl/cu118
-pip install xformers==0.0.24 --index-url https://download.pytorch.org/whl/cu118
-pip install torch-cluster -f https://data.pyg.org/whl/torch-2.2.0%2Bcu118.html
+bash scripts/env_setup.sh
+
 ```
 
 ### Install diff-gaussian-rasterization
 ```
+cd util/
 git clone --recursive https://github.com/ashawkey/diff-gaussian-rasterization
 mv diff-gaussian-rasterization diff-gaussian-rasterization_extended  # to avoid conflicts between original gaussian-rasterization
 cd diff-gaussian-rasterization_extended
@@ -35,26 +33,6 @@ cd ..
 pip install ./diff-gaussian-rasterization_extended
 ```
 
-### Install EMD
-The EMD module is from [https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master/emd](https://github.com/Colin97/MSN-Point-Cloud-Completion/tree/master/emd)
-
-```
-cd util/emd
-python setup.py install
-```
-
-### Install pytorch3d
-```
-pip install ninja
-pip install "git+https://github.com/facebookresearch/pytorch3d.git@v0.7.6"
-```
-
-### Install other dependencel
-```
-pip install -r requirements.txt
-```
-
-
 ## Generate samples (eval)
 
 Download the checkpoint from [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/output).
@@ -69,11 +47,15 @@ CUDA_VISIBLE_DEVICES=0 python sample_class_cond_cfg.py --config_ae config/objave
 ## Training
 
 ### Dataset
-
 Download the [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse). Change the `data_root` specified in the [config](./config/objaverse/train_18k_base.yaml).
 We only use part of the dataset and the data split is in [this file](./datasets/splits/objaverse/train.txt).
 The model training requires point clouds as input, the point clouds are in [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/Dataset/Objaverse/gobjaverse_pc). Unzip the file and put it under the `data_root`.
 For more details of the dataset, please refer to Section A.1 in the appendix of the paper. Please also cite [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse) if you use the point clouds.
+
+```
+bash util/download_objaverse.sh
+```
+
 
 ### VAE training
 The VAE training consists of two stages. For the detailed commands, see [VAE Training Script](./scripts/vae/train_dgx.sh). Note that after training, we pre-compute the latents for latent diffusion.

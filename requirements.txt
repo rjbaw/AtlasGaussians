@@ -3,11 +3,22 @@ omegaconf
 einops
 opencv-python
 pillow
-imageio==2.33.1
+imageio==2.37.0
 tqdm
-timm==0.9.16
+timm==1.0.15
 ftfy
 regex
+pytorch-fid
+scikit-learn==1.6.1
 pytorch-fid==0.3.0
-scikit-learn==1.4.0
-tensorboard==2.16.2
+tensorboard
+numpy
+h5py
+ipdb
+xformers @ git+https://github.com/facebookresearch/xformers.git@da84ce3a8fc07e8b1fa0de5fce08c87bf7e713df
+#torch-cluster @ git+https://github.com/rusty1s/pytorch_cluster.git
+torch-cluster
+ninja
+pytorch3d @ git+https://github.com/facebookresearch/pytorch3d.git@366eff21d9d1853a87961129625adb42032af665
+util/emd
+util/diff-gaussian-rasterization_extended

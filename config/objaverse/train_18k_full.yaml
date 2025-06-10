@@ -5,7 +5,7 @@ pin_mem: False
 # dataset config
 dataset:
   name: 'objaverse'
-  data_root: /scratch/cluster/yanght/Projects/AliGeoReg/Dataset/Objaverse/
+  data_root: data/objaverse
   num_views: 6
   img_size_input: 224
   img_size_render: 512

@@ -292,8 +292,23 @@ def compute_statistics_of_path(path, model, batch_size, dims, device,
                                                         dims, device, num_workers,reso=reso)
                 np.save(os.path.join(basepath,path.name+str(reso)+'mean'), m)
                 np.save(os.path.join(basepath,path.name+str(reso)+'std'), s)
+
         except:
             print(f'{dataset}')
+
+    elif 'shapenet' in dataset:
+        from pathlib import Path
+        root = Path(path)
+        pngs_rgb    = list(root.glob('**/rgb/*.png'))
+        pngs_images = list(root.glob('**/*.png'))
+        files = sorted(str(p) for p in (pngs_rgb + pngs_images))
+        if len(files) == 0:
+            raise RuntimeError(f"No .png files found under {path}")
+
+        m, s = calculate_activation_statistics(
+            files, model, batch_size, dims, device,
+            num_workers, reso=reso
+        )
 
     else:
         raise NotImplementedError
@@ -307,40 +322,57 @@ def compute_statistics_of_path_pred(path, model, batch_size, dims, device,
     print(f"basepath={basepath}")
     os.makedirs(os.path.join(basepath), exist_ok=True)
 
-    try:
+    if 'objaverse' in dataset:
         try:
-            m=np.load(os.path.join(basepath,str(reso)+'mean.npy'))
-            s=np.load(os.path.join(basepath,str(reso)+'std.npy'))
-            print('loading_sample')
+            try:
+                m=np.load(os.path.join(basepath,str(reso)+'mean.npy'))
+                s=np.load(os.path.join(basepath,str(reso)+'std.npy'))
+                print('loading_sample')
+            except:
+                with open('../../datasets/splits/objaverse/eval250.txt', 'r') as f:
+                    obj_ids = f.read().splitlines()
+
+                files = []
+                if 'lgm' in basepath or 'shape' in basepath or 'gvgen' in basepath:
+                    seed = 0
+                elif 'ours' in basepath:
+                    seed = 5
+                elif 'ln3diff' in basepath:
+                    seed = 41
+                else:
+                    raise NotImplementedError
+
+                text_fpath = f"/scratch/cluster/yanght/Projects/AliGeoReg/Dataset/Objaverse/gobjaverse_cap3d/text_captions_cap3d.json"
+                texts = json.load(open(text_fpath, 'r'))
+                for test_idx, obj_idx in enumerate(obj_ids):
+                    text = texts[obj_idx]
+                    text_prefix = '_'.join(text.split()).replace('/', '=')                                                                                                                                                                                                         
+                    for v in range(24):
+                        files.append(f"{path}/seed{seed}_{test_idx:05d}-{text_prefix}-{v}.png")
+                assert len(files) == 24 * len(obj_ids)
+
+                m, s = calculate_activation_statistics(files, model, batch_size,
+                                                        dims, device, num_workers,reso=reso)
+                np.save(os.path.join(basepath,str(reso)+'mean'), m)
+                np.save(os.path.join(basepath,str(reso)+'std'), s)
         except:
-            with open('../../datasets/splits/objaverse/eval250.txt', 'r') as f:
-                obj_ids = f.read().splitlines()
+            print('error sample image')
+    elif 'shapenet' in dataset:
+        from pathlib import Path
+        root = Path(path)
+        pngs_rgb    = list(root.glob('**/rgb/*.png'))
+        pngs_images = list(root.glob('**/*.png'))
+        files = sorted(str(p) for p in (pngs_rgb + pngs_images))
+        if len(files) == 0:
+            raise RuntimeError(f"No .png files found under {path}")
 
-            files = []
-            if 'lgm' in basepath or 'shape' in basepath or 'gvgen' in basepath:
-                seed = 0
-            elif 'ours' in basepath:
-                seed = 5
-            elif 'ln3diff' in basepath:
-                seed = 41
-            else:
-                raise NotImplementedError
+        m, s = calculate_activation_statistics(
+            files, model, batch_size, dims, device,
+            num_workers, reso=reso
+        )
 
-            text_fpath = f"/scratch/cluster/yanght/Projects/AliGeoReg/Dataset/Objaverse/gobjaverse_cap3d/text_captions_cap3d.json"
-            texts = json.load(open(text_fpath, 'r'))
-            for test_idx, obj_idx in enumerate(obj_ids):
-                text = texts[obj_idx]
-                text_prefix = '_'.join(text.split()).replace('/', '=')                                                                                                                                                                                                         
-                for v in range(24):
-                    files.append(f"{path}/seed{seed}_{test_idx:05d}-{text_prefix}-{v}.png")
-            assert len(files) == 24 * len(obj_ids)
-
-            m, s = calculate_activation_statistics(files, model, batch_size,
-                                                    dims, device, num_workers,reso=reso)
-            np.save(os.path.join(basepath,str(reso)+'mean'), m)
-            np.save(os.path.join(basepath,str(reso)+'std'), s)
-    except:
-        print('error sample image')
+    else:
+        raise NotImplementedError(f"Dataset '{dataset}' not supported")
 
     return m, s
 

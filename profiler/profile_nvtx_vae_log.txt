@@ -1,0 +1,54 @@
+Not using distributed mode
+[22:57:29.673345] job dir: /home/rb/AtlasGaussians
+[22:57:29.673364] Namespace(config_path='config/shapenet/train_car_full.yaml',
+log_dir='output/vae/shapenet/vae_car_full',
+resume='output/vae/shapenet/vae_car_full/ckpt/checkpoint-199_model_only.pth',
+start_epoch=0,
+eval=False,
+infer=False,
+dist_eval=False,
+device='cuda',
+distributed=False,
+world_size=1,
+local_rank=-1,
+dist_url='env://',
+output_dir='output/vae/shapenet/vae_car_full/ckpt')
+[22:57:29.709122] ['02958343']
+[22:57:29.709203] ['02958343']
+[22:57:29.739842] Copied .gitignore to output/vae/shapenet/vae_car_full/code/.gitignore
+[22:57:29.739887] Copied README.md to output/vae/shapenet/vae_car_full/code/README.md
+[22:57:29.739921] Copied config/objaverse/train_18k_base.yaml to output/vae/shapenet/vae_car_full/code/config/objaverse/train_18k_base.yaml
+[22:57:29.739950] Copied config/objaverse/train_18k_full.yaml to output/vae/shapenet/vae_car_full/code/config/objaverse/train_18k_full.yaml
+[22:57:29.739978] Copied config/shapenet/train_car_base.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_car_base.yaml
+[22:57:29.740004] Copied config/shapenet/train_car_full.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_car_full.yaml
+[22:57:29.740031] Copied config/shapenet/train_chair_base.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_chair_base.yaml
+[22:57:29.740057] Copied config/shapenet/train_chair_full.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_chair_full.yaml
+[22:57:29.740082] Copied config/shapenet/train_plane_base.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_plane_base.yaml
+[22:57:29.740108] Copied config/shapenet/train_plane_full.yaml to output/vae/shapenet/vae_car_full/code/config/shapenet/train_plane_full.yaml
+[22:57:29.740149] Copied datasets/objaverse.py to output/vae/shapenet/vae_car_full/code/datasets/objaverse.py
+[22:57:29.740180] Copied datasets/shapenet.py to output/vae/shapenet/vae_car_full/code/datasets/shapenet.py
+[22:57:29.740208] Copied datasets/splits/shapenet/02691156_test.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02691156_test.txt
+[22:57:29.740233] Copied datasets/splits/shapenet/02691156_train.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02691156_train.txt
+[22:57:29.740259] Copied datasets/splits/shapenet/02958343_test.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02958343_test.txt
+[22:57:29.740284] Copied datasets/splits/shapenet/02958343_train.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02958343_train.txt
+[22:57:29.740308] Copied datasets/splits/shapenet/03001627_test.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/03001627_test.txt
+[22:57:29.740333] Copied datasets/splits/shapenet/03001627_train.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/03001627_train.txt
+[22:57:29.740374] Copied engine_ae.py to output/vae/shapenet/vae_car_full/code/engine_ae.py
+[22:57:29.740403] Copied engine_class_cond.py to output/vae/shapenet/vae_car_full/code/engine_class_cond.py
+[22:57:29.740431] Copied evaluations/fid_scores/fid.sh to output/vae/shapenet/vae_car_full/code/evaluations/fid_scores/fid.sh
+[22:57:29.740462] Copied evaluations/fid_scores/fid_score.py to output/vae/shapenet/vae_car_full/code/evaluations/fid_scores/fid_score.py
+[22:57:29.740489] Copied evaluations/fid_scores/kid.sh to output/vae/shapenet/vae_car_full/code/evaluations/fid_scores/kid.sh
+[22:57:29.740520] Copied evaluations/fid_scores/kid_score.py to output/vae/shapenet/vae_car_full/code/evaluations/fid_scores/kid_score.py
+[22:57:29.740549] Copied main_ae.py to output/vae/shapenet/vae_car_full/code/main_ae.py
+[22:57:29.740577] Copied main_class_cond.py to output/vae/shapenet/vae_car_full/code/main_class_cond.py
+[22:57:29.740603] Copied requirements.txt to output/vae/shapenet/vae_car_full/code/requirements.txt
+[22:57:29.740631] Copied sample_class_cond_cfg.py to output/vae/shapenet/vae_car_full/code/sample_class_cond_cfg.py
+[22:57:29.740660] Copied scripts/ldm/train_dgx.sh to output/vae/shapenet/vae_car_full/code/scripts/ldm/train_dgx.sh
+[22:57:29.740686] Copied scripts/vae/train_dgx.sh to output/vae/shapenet/vae_car_full/code/scripts/vae/train_dgx.sh
+[22:57:29.740714] Copied util/emd/README.md to output/vae/shapenet/vae_car_full/code/util/emd/README.md
+[22:57:29.740744] Copied util/misc.py to output/vae/shapenet/vae_car_full/code/util/misc.py
+Collecting data...
+Generating '/tmp/nsys-report-e643.qdstrm'
+[1/1] [0%                          ] nsys-report-316f.nsys-rep[1/1] [0%                          ] nsys-report-316f.nsys-rep[1/1] [=======37%                  ] nsys-report-316f.nsys-rep[1/1] [=======38%                  ] nsys-report-316f.nsys-rep[1/1] [===========50%              ] nsys-report-316f.nsys-rep[1/1] [==============62%           ] nsys-report-316f.nsys-rep[1/1] [==============63%           ] nsys-report-316f.nsys-rep[1/1] [==============64%           ] nsys-report-316f.nsys-rep[1/1] [===============65%          ] nsys-report-316f.nsys-rep[1/1] [===============66%          ] nsys-report-316f.nsys-rep[1/1] [===============67%          ] nsys-report-316f.nsys-rep[1/1] [================68%         ] nsys-report-316f.nsys-rep[1/1] [================69%         ] nsys-report-316f.nsys-rep[1/1] [================70%         ] nsys-report-316f.nsys-rep[1/1] [================71%         ] nsys-report-316f.nsys-rep[1/1] [=================72%        ] nsys-report-316f.nsys-rep[1/1] [=================73%        ] nsys-report-316f.nsys-rep[1/1] [=================74%        ] nsys-report-316f.nsys-rep[1/1] [==================75%       ] nsys-report-316f.nsys-rep[1/1] [==================76%       ] nsys-report-316f.nsys-rep[1/1] [==================77%       ] nsys-report-316f.nsys-rep[1/1] [===================79%      ] nsys-report-316f.nsys-rep[1/1] [===================80%      ] nsys-report-316f.nsys-rep[1/1] [===================81%      ] nsys-report-316f.nsys-rep[1/1] [===================82%      ] nsys-report-316f.nsys-rep[1/1] [====================83%     ] nsys-report-316f.nsys-rep[1/1] [====================84%     ] nsys-report-316f.nsys-rep[1/1] [====================85%     ] nsys-report-316f.nsys-rep[1/1] [=====================86%    ] nsys-report-316f.nsys-rep[1/1] [=====================87%    ] nsys-report-316f.nsys-rep[1/1] [=====================88%    ] nsys-report-316f.nsys-rep[1/1] [=====================89%    ] nsys-report-316f.nsys-rep[1/1] [======================90%   ] nsys-report-316f.nsys-rep[1/1] [======================91%   ] nsys-report-316f.nsys-rep[1/1] [========================100%] nsys-report-316f.nsys-rep[1/1] [========================100%] nsys-report-316f.nsys-rep[1/1] [========================100%] nsys-report-316f.nsys-rep
+Generated:
+	/tmp/nsys-report-316f.nsys-rep

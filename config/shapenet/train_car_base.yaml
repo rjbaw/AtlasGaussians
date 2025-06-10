@@ -5,7 +5,7 @@ pin_mem: False
 # dataset config
 dataset:
   name: 'shapenet'
-  data_root: /scratch/cluster/yanght/Projects/AliGeoReg/Dataset/ShapeNetCoreV2/ShapeNet_rendering/input_view76_r1.2/
+  data_root: data/render_view200_r1.2
   categories: ['02958343']
   num_views: 6
   img_size_input: 224
@@ -29,7 +29,7 @@ model:
   # VAE
   num_lp: 512
   lp_dim: 512
-  latent_dim: 64
+  latent_dim: 16
   embed_layers_depth: 1  # TODO: might need to increase
   latent_net_depth: 8
   use_uv_pe: True

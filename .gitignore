@@ -1,1 +1,10 @@
+log/
+data/
+output/
+build/
+blender*
+*.egg-info
+*~
 *.pyc
+*.nsys-rep
+*.ncu-rep

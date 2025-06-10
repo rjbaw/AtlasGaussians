@@ -1,0 +1,70 @@
+Not using distributed mode
+[22:57:35.960193] job dir: /home/rb/AtlasGaussians
+[22:57:35.960224] Namespace(batch_size=27,
+epochs=1000,
+replica=8,
+accum_iter=1,
+model='kl_d512_m512_l16_d24_edm',
+config_ae='config/shapenet/train_car_full.yaml',
+ae_pth='output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth',
+clip_grad=None,
+weight_decay=0.05,
+lr=0.0001,
+layer_decay=0.75,
+min_lr=1e-06,
+warmup_epochs=50,
+log_dir='output/ldm/shapenet/car',
+latent_dir='output/vae/shapenet/vae_car_full/inference/latents/epoch_1000',
+device='cuda',
+seed=0,
+resume='',
+start_epoch=0,
+eval=False,
+dist_eval=False,
+num_workers=10,
+pin_mem=True,
+world_size=1,
+local_rank=-1,
+dist_on_itp=False,
+dist_url='env://',
+output_dir='output/ldm/shapenet/car/ckpt',
+distributed=False)
+[22:57:35.974089] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7f17832e3f80>
+[22:57:36.004841] Copied .gitignore to output/ldm/shapenet/car/code/.gitignore
+[22:57:36.004894] Copied README.md to output/ldm/shapenet/car/code/README.md
+[22:57:36.004936] Copied config/objaverse/train_18k_base.yaml to output/ldm/shapenet/car/code/config/objaverse/train_18k_base.yaml
+[22:57:36.004965] Copied config/objaverse/train_18k_full.yaml to output/ldm/shapenet/car/code/config/objaverse/train_18k_full.yaml
+[22:57:36.004993] Copied config/shapenet/train_car_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_car_base.yaml
+[22:57:36.005020] Copied config/shapenet/train_car_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_car_full.yaml
+[22:57:36.005047] Copied config/shapenet/train_chair_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_chair_base.yaml
+[22:57:36.005074] Copied config/shapenet/train_chair_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_chair_full.yaml
+[22:57:36.005098] Copied config/shapenet/train_plane_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_plane_base.yaml
+[22:57:36.005124] Copied config/shapenet/train_plane_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_plane_full.yaml
+[22:57:36.005164] Copied datasets/objaverse.py to output/ldm/shapenet/car/code/datasets/objaverse.py
+[22:57:36.005195] Copied datasets/shapenet.py to output/ldm/shapenet/car/code/datasets/shapenet.py
+[22:57:36.005223] Copied datasets/splits/shapenet/02691156_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_test.txt
+[22:57:36.005249] Copied datasets/splits/shapenet/02691156_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_train.txt
+[22:57:36.005276] Copied datasets/splits/shapenet/02958343_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02958343_test.txt
+[22:57:36.005305] Copied datasets/splits/shapenet/02958343_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02958343_train.txt
+[22:57:36.005331] Copied datasets/splits/shapenet/03001627_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/03001627_test.txt
+[22:57:36.005357] Copied datasets/splits/shapenet/03001627_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/03001627_train.txt
+[22:57:36.005398] Copied engine_ae.py to output/ldm/shapenet/car/code/engine_ae.py
+[22:57:36.005428] Copied engine_class_cond.py to output/ldm/shapenet/car/code/engine_class_cond.py
+[22:57:36.005457] Copied evaluations/fid_scores/fid.sh to output/ldm/shapenet/car/code/evaluations/fid_scores/fid.sh
+[22:57:36.005488] Copied evaluations/fid_scores/fid_score.py to output/ldm/shapenet/car/code/evaluations/fid_scores/fid_score.py
+[22:57:36.005513] Copied evaluations/fid_scores/kid.sh to output/ldm/shapenet/car/code/evaluations/fid_scores/kid.sh
+[22:57:36.005544] Copied evaluations/fid_scores/kid_score.py to output/ldm/shapenet/car/code/evaluations/fid_scores/kid_score.py
+[22:57:36.005573] Copied main_ae.py to output/ldm/shapenet/car/code/main_ae.py
+[22:57:36.005602] Copied main_class_cond.py to output/ldm/shapenet/car/code/main_class_cond.py
+[22:57:36.005627] Copied requirements.txt to output/ldm/shapenet/car/code/requirements.txt
+[22:57:36.005655] Copied sample_class_cond_cfg.py to output/ldm/shapenet/car/code/sample_class_cond_cfg.py
+[22:57:36.005683] Copied scripts/ldm/train_dgx.sh to output/ldm/shapenet/car/code/scripts/ldm/train_dgx.sh
+[22:57:36.005709] Copied scripts/vae/train_dgx.sh to output/ldm/shapenet/car/code/scripts/vae/train_dgx.sh
+[22:57:36.005736] Copied util/emd/README.md to output/ldm/shapenet/car/code/util/emd/README.md
+[22:57:36.005768] Copied util/misc.py to output/ldm/shapenet/car/code/util/misc.py
+[22:57:37.269983] Loading autoencoder output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth
+Collecting data...
+Generating '/tmp/nsys-report-e4da.qdstrm'
+[1/1] [0%                          ] nsys-report-2cfa.nsys-rep[1/1] [0%                          ] nsys-report-2cfa.nsys-rep[1/1] [=======37%                  ] nsys-report-2cfa.nsys-rep[1/1] [=========44%                ] nsys-report-2cfa.nsys-rep[1/1] [===========51%              ] nsys-report-2cfa.nsys-rep[1/1] [============56%             ] nsys-report-2cfa.nsys-rep[1/1] [==============61%           ] nsys-report-2cfa.nsys-rep[1/1] [==============62%           ] nsys-report-2cfa.nsys-rep[1/1] [==============63%           ] nsys-report-2cfa.nsys-rep[1/1] [==============64%           ] nsys-report-2cfa.nsys-rep[1/1] [===============65%          ] nsys-report-2cfa.nsys-rep[1/1] [===============66%          ] nsys-report-2cfa.nsys-rep[1/1] [===============67%          ] nsys-report-2cfa.nsys-rep[1/1] [================69%         ] nsys-report-2cfa.nsys-rep[1/1] [================70%         ] nsys-report-2cfa.nsys-rep[1/1] [================71%         ] nsys-report-2cfa.nsys-rep[1/1] [=================72%        ] nsys-report-2cfa.nsys-rep[1/1] [=================73%        ] nsys-report-2cfa.nsys-rep[1/1] [=================74%        ] nsys-report-2cfa.nsys-rep[1/1] [==================75%       ] nsys-report-2cfa.nsys-rep[1/1] [==================76%       ] nsys-report-2cfa.nsys-rep[1/1] [==================77%       ] nsys-report-2cfa.nsys-rep[1/1] [===================80%      ] nsys-report-2cfa.nsys-rep[1/1] [===================81%      ] nsys-report-2cfa.nsys-rep[1/1] [===================82%      ] nsys-report-2cfa.nsys-rep[1/1] [====================83%     ] nsys-report-2cfa.nsys-rep[1/1] [====================84%     ] nsys-report-2cfa.nsys-rep[1/1] [====================85%     ] nsys-report-2cfa.nsys-rep[1/1] [=====================86%    ] nsys-report-2cfa.nsys-rep[1/1] [=====================87%    ] nsys-report-2cfa.nsys-rep[1/1] [=====================88%    ] nsys-report-2cfa.nsys-rep[1/1] [=====================89%    ] nsys-report-2cfa.nsys-rep[1/1] [========================100%] nsys-report-2cfa.nsys-rep[1/1] [========================100%] nsys-report-2cfa.nsys-rep[1/1] [========================100%] nsys-report-2cfa.nsys-rep
+Generated:
+	/tmp/nsys-report-2cfa.nsys-rep

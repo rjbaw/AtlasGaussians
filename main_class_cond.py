@@ -102,9 +102,14 @@ def main(args, config_ae):
 
     cudnn.benchmark = True
 
-    build_dataset_ldm = misc.load_module(f"datasets.objaverse_ldm", 'build_dataset_ldm')
-    dataset_train = build_dataset_ldm('train', cfg=config_ae.dataset, args=args)
-    dataset_val = build_dataset_ldm('test', cfg=config_ae.dataset, args=args)
+    if config_ae.dataset.name == "objaverse":
+        build_dataset_ldm = misc.load_module(f"datasets.objaverse_ldm", 'build_dataset_ldm')
+        dataset_train = build_dataset_ldm('train', cfg=config_ae.dataset, args=args)
+        dataset_val = build_dataset_ldm('test', cfg=config_ae.dataset, args=args)
+    else:
+        build_dataset_ldm = misc.load_module(f"datasets.shapenet_ldm", 'build_dataset_ldm')
+        dataset_train = build_dataset_ldm('train', cfg=config_ae.dataset, args=args)
+        dataset_val = build_dataset_ldm('test', cfg=config_ae.dataset, args=args)
 
     if True:  # args.distributed:
         num_tasks = misc.get_world_size()
@@ -159,7 +164,7 @@ def main(args, config_ae):
     ae = KLAutoEncoder(config_ae)
     ae.eval()
     print("Loading autoencoder %s" % args.ae_pth)
-    ae.load_state_dict(torch.load(args.ae_pth, map_location='cpu')['model'])
+    ae.load_state_dict(torch.load(args.ae_pth, map_location='cpu', weights_only=False)['model'])
     ae.to(device)
 
     clip_model, preprocess = clip.load("ViT-B/32", device=device)

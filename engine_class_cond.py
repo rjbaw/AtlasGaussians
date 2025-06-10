@@ -50,17 +50,33 @@ def train_one_epoch(model: torch.nn.Module, ae: torch.nn.Module, criterion: torc
 
         data_dict = misc.to_device(data_dict, device)
 
-        with torch.cuda.amp.autocast(enabled=False):
+        with torch.amp.autocast(device_type="cuda", enabled=False):
 
             posterior = DiagonalGaussianDistribution(data_dict['mean'], data_dict['logvar'])
             x = posterior.sample()
             x = x * scale_factor
 
-            batch_text = [data_loader.dataset.texts[data_loader.dataset.models[idx]] for idx in data_dict['idx']]
-            text_token = clip.tokenize(batch_text, truncate=True).to(device)  # [B, 77]
+            # batch_text = [data_loader.dataset.texts[data_loader.dataset.models[idx]] for idx in data_dict['idx']]
+            # text_token = clip.tokenize(batch_text, truncate=True).to(device)  # [B, 77]
 
-            with torch.no_grad():
-                text_features = clip_model.encode_text(text_token).float().unsqueeze(1)  # [B, 1, 512]
+            # with torch.no_grad():
+            #     text_features = clip_model.encode_text(text_token).float().unsqueeze(1)  # [B, 1, 512]
+
+            if hasattr(data_loader.dataset, 'texts'):
+                batch_text = [
+                    data_loader.dataset.texts[data_loader.dataset.models[idx]]
+                    for idx in data_dict['idx']
+                ]
+                text_token = clip.tokenize(batch_text, truncate=True).to(device)  # [B, 77]
+                with torch.no_grad():
+                    text_features = (
+                        clip_model.encode_text(text_token)
+                        .float()
+                        .unsqueeze(1)
+                    )  # [B, 1, 512]
+            else:
+                B = data_dict['mean'].shape[0]
+                text_features = null_features.expand(B, -1, -1)  # [B, 1, 512]
 
             loss = criterion(model, x, text_features, **model_kwargs)
 
@@ -124,17 +140,33 @@ def evaluate(data_loader, model, ae, clip_model, criterion, device):
         data_dict = misc.to_device(data_dict, device)
 
         # compute output
-        with torch.cuda.amp.autocast(enabled=False):
+        with torch.amp.autocast(device_type="cuda", enabled=False):
 
             posterior = DiagonalGaussianDistribution(data_dict['mean'], data_dict['logvar'])
             x = posterior.sample()
             x = x * scale_factor
 
-            batch_text = [data_loader.dataset.texts[data_loader.dataset.models[idx]] for idx in data_dict['idx']]
-            text_token = clip.tokenize(batch_text, truncate=True).to(device)
+            # batch_text = [data_loader.dataset.texts[data_loader.dataset.models[idx]] for idx in data_dict['idx']]
+            # text_token = clip.tokenize(batch_text, truncate=True).to(device)
 
-            with torch.no_grad():
-                text_features = clip_model.encode_text(text_token).float().unsqueeze(1)
+            # with torch.no_grad():
+            #     text_features = clip_model.encode_text(text_token).float().unsqueeze(1)
+
+            if hasattr(data_loader.dataset, 'texts'):
+                batch_text = [
+                    data_loader.dataset.texts[data_loader.dataset.models[idx]]
+                    for idx in data_dict['idx']
+                ]
+                text_token = clip.tokenize(batch_text, truncate=True).to(device)  # [B, 77]
+                with torch.no_grad():
+                    text_features = (
+                        clip_model.encode_text(text_token)
+                        .float()
+                        .unsqueeze(1)
+                    )  # [B, 1, 512]
+            else:
+                B = data_dict['mean'].shape[0]
+                text_features = null_features.expand(B, -1, -1)  # [B, 1, 512]
 
             loss = criterion(model, x, text_features, **model_kwargs)
             
