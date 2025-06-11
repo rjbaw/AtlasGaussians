@@ -10,7 +10,7 @@ bash scripts/env_setup.sh
 
 ```
 
-### Install diff-gaussian-rasterization
+### Install diff-gaussian-rasterization (temporary setup for now)
 ```
 cd util/
 git clone --recursive https://github.com/ashawkey/diff-gaussian-rasterization
@@ -33,28 +33,46 @@ cd ..
 pip install ./diff-gaussian-rasterization_extended
 ```
 
-## Generate samples (eval)
+## Reproducing Results
 
-Download the checkpoint from [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/output).
-
+Download the checkpoint from [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/output). 
+Place them according to original path.
 To reproduce the results of Figure 6 in the paper:
 
 ```
-CUDA_VISIBLE_DEVICES=0 python sample_class_cond_cfg.py --config_ae config/objaverse/train_18k_full.yaml --ae_pth ./output/vae/objaverse/vae_L16_ep001_7B7_kl1e-4_full_7B7/ckpt/checkpoint-799.pth --dm kl_d512_m512_l16_d24_edm --dm_pth output/ldm/objaverse/ns49_AE800_kl1e-4_d512_m512_l16_d24_edm_cfg_sf133_8B27/ckpt/checkpoint-850.pth --seed 5
+bash scripts/render_paper.sh
 ```
 
 
 ## Training
 
 ### Dataset
-Download the [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse). Change the `data_root` specified in the [config](./config/objaverse/train_18k_base.yaml).
-We only use part of the dataset and the data split is in [this file](./datasets/splits/objaverse/train.txt).
-The model training requires point clouds as input, the point clouds are in [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/Dataset/Objaverse/gobjaverse_pc). Unzip the file and put it under the `data_root`.
-For more details of the dataset, please refer to Section A.1 in the appendix of the paper. Please also cite [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse) if you use the point clouds.
+
+#### Objaverse
+Download the [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse).
 
 ```
 bash util/download_objaverse.sh
 ```
+
+We only use part of the dataset and the data split is in [this file](./datasets/splits/objaverse/paper_train.txt).
+The model training requires point clouds as input, the point clouds are in [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/Dataset/Objaverse/gobjaverse_pc). 
+
+Unzip the file and put it under the `data_root` (default at `data/objaverse/`).
+
+For more details of the dataset, please refer to Section A.1 in the appendix of the paper. Please also cite [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse) if you use the point clouds.
+
+
+#### ShapeNetCorev2 (temp)
+Download [ShapenetCorev2](https://shapenet.org). Place them under `util/shapenet_renderer/data/` or any other path.
+
+```
+cd util/shapenet_renderer/
+bash render_car.sh
+bash render_plane.sh
+bash render_chair.sh
+```
+Move the renders accordingly to paths specified inside the configuration files inside the `config/` directory.
 
 
 ### VAE training
