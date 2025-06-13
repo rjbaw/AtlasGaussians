@@ -1,6 +1,6 @@
 Not using distributed mode
-[18:08:47.133906] job dir: /workspace/home/AtlasGaussians
-[18:08:47.133933] Namespace(batch_size=27,
+[10:09:31.585092] job dir: /workspace/home/AtlasGaussians
+[10:09:31.585120] Namespace(batch_size=27,
 epochs=1000,
 replica=8,
 accum_iter=1,
@@ -29,41 +29,31 @@ dist_on_itp=False,
 dist_url='env://',
 output_dir='output/ldm/shapenet/car/ckpt',
 distributed=False)
-[18:08:47.150400] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7f69fb7186b0>
-[18:08:47.155506] Copied .gitignore to output/ldm/shapenet/car/code/.gitignore
-[18:08:47.155559] Copied README.md to output/ldm/shapenet/car/code/README.md
-[18:08:47.155596] Copied config/objaverse/train_18k_base.yaml to output/ldm/shapenet/car/code/config/objaverse/train_18k_base.yaml
-[18:08:47.155638] Copied config/objaverse/train_18k_full.yaml to output/ldm/shapenet/car/code/config/objaverse/train_18k_full.yaml
-[18:08:47.155671] Copied config/shapenet/train_car_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_car_base.yaml
-[18:08:47.155701] Copied config/shapenet/train_car_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_car_full.yaml
-[18:08:47.155731] Copied config/shapenet/train_chair_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_chair_base.yaml
-[18:08:47.155762] Copied config/shapenet/train_chair_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_chair_full.yaml
-[18:08:47.155792] Copied config/shapenet/train_plane_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_plane_base.yaml
-[18:08:47.155821] Copied config/shapenet/train_plane_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_plane_full.yaml
-[18:08:47.155879] Copied datasets/objaverse.py to output/ldm/shapenet/car/code/datasets/objaverse.py
-[18:08:47.155914] Copied datasets/shapenet.py to output/ldm/shapenet/car/code/datasets/shapenet.py
-[18:08:47.155957] Copied datasets/splits/shapenet/02691156_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_test.txt
-[18:08:47.155987] Copied datasets/splits/shapenet/02691156_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_train.txt
-[18:08:47.156017] Copied datasets/splits/shapenet/02958343_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02958343_test.txt
-[18:08:47.156046] Copied datasets/splits/shapenet/02958343_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02958343_train.txt
-[18:08:47.156075] Copied datasets/splits/shapenet/03001627_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/03001627_test.txt
-[18:08:47.156103] Copied datasets/splits/shapenet/03001627_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/03001627_train.txt
-[18:08:47.156146] Copied engine_ae.py to output/ldm/shapenet/car/code/engine_ae.py
-[18:08:47.156177] Copied engine_class_cond.py to output/ldm/shapenet/car/code/engine_class_cond.py
-[18:08:47.156209] Copied evaluations/fid_scores/fid.sh to output/ldm/shapenet/car/code/evaluations/fid_scores/fid.sh
-[18:08:47.156250] Copied evaluations/fid_scores/fid_score.py to output/ldm/shapenet/car/code/evaluations/fid_scores/fid_score.py
-[18:08:47.156277] Copied evaluations/fid_scores/kid.sh to output/ldm/shapenet/car/code/evaluations/fid_scores/kid.sh
-[18:08:47.156319] Copied evaluations/fid_scores/kid_score.py to output/ldm/shapenet/car/code/evaluations/fid_scores/kid_score.py
-[18:08:47.156351] Copied main_ae.py to output/ldm/shapenet/car/code/main_ae.py
-[18:08:47.156383] Copied main_class_cond.py to output/ldm/shapenet/car/code/main_class_cond.py
-[18:08:47.156412] Copied requirements.txt to output/ldm/shapenet/car/code/requirements.txt
-[18:08:47.156453] Copied sample_class_cond_cfg.py to output/ldm/shapenet/car/code/sample_class_cond_cfg.py
-[18:08:47.156483] Copied scripts/ldm/train_dgx.sh to output/ldm/shapenet/car/code/scripts/ldm/train_dgx.sh
-[18:08:47.156512] Copied scripts/vae/train_dgx.sh to output/ldm/shapenet/car/code/scripts/vae/train_dgx.sh
-[18:08:47.156542] Copied util/emd/README.md to output/ldm/shapenet/car/code/util/emd/README.md
-[18:08:47.156583] Copied util/misc.py to output/ldm/shapenet/car/code/util/misc.py
-[18:08:48.944969] Loading autoencoder output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth
-[18:08:50.633821] Model = EDMPrecond(
+[10:09:31.598697] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7f75a74b67b0>
+[10:09:31.603267] Copied README.md to output/ldm/shapenet/car/code/README.md
+[10:09:31.603322] Copied datasets/splits/shapenet/02691156_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_test.txt
+[10:09:31.603367] Copied datasets/splits/shapenet/02691156_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_train.txt
+[10:09:31.603408] Copied engine_ae.py to output/ldm/shapenet/car/code/engine_ae.py
+[10:09:31.603441] Copied gs.py to output/ldm/shapenet/car/code/gs.py
+[10:09:31.603475] Copied main_ae_profile_nvtx.py to output/ldm/shapenet/car/code/main_ae_profile_nvtx.py
+[10:09:31.603511] Copied main_ae_profile_torch.py to output/ldm/shapenet/car/code/main_ae_profile_torch.py
+[10:09:31.603543] Copied main_class_cond_profile_nvtx.py to output/ldm/shapenet/car/code/main_class_cond_profile_nvtx.py
+[10:09:31.603575] Copied main_class_cond_profile_torch.py to output/ldm/shapenet/car/code/main_class_cond_profile_torch.py
+[10:09:31.603606] Copied profiler/profile_nvtx_infer_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_infer_log.txt
+[10:09:31.603636] Copied profiler/profile_nvtx_ldm_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_ldm_log.txt
+[10:09:31.603674] Copied profiler/profile_nvtx_vae_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_vae_log.txt
+[10:09:31.603703] Copied profiler/profile_torch_ldm_log.txt to output/ldm/shapenet/car/code/profiler/profile_torch_ldm_log.txt
+[10:09:31.603743] Copied profiler/profile_torch_vae_log.txt to output/ldm/shapenet/car/code/profiler/profile_torch_vae_log.txt
+[10:09:31.603773] Copied requirements.txt to output/ldm/shapenet/car/code/requirements.txt
+[10:09:31.603803] Copied sample_class_cond_cfg_profile_nvtx.py to output/ldm/shapenet/car/code/sample_class_cond_cfg_profile_nvtx.py
+[10:09:31.603835] Copied sample_class_cond_cfg_profile_torch.py to output/ldm/shapenet/car/code/sample_class_cond_cfg_profile_torch.py
+[10:09:31.603865] Copied scripts/profile_ncu.sh to output/ldm/shapenet/car/code/scripts/profile_ncu.sh
+[10:09:31.603892] Copied scripts/profile_nvtx.sh to output/ldm/shapenet/car/code/scripts/profile_nvtx.sh
+[10:09:31.603921] Copied scripts/profile_torch.sh to output/ldm/shapenet/car/code/scripts/profile_torch.sh
+[10:09:31.603948] Copied scripts/train_shape_chair.sh to output/ldm/shapenet/car/code/scripts/train_shape_chair.sh
+[10:09:31.603976] Copied scripts/train_shape_plane.sh to output/ldm/shapenet/car/code/scripts/train_shape_plane.sh
+[10:09:33.312933] Loading autoencoder output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth
+[10:09:35.263230] Model = EDMPrecond(
   (model): LatentArrayTransformer(
     (proj_in): Linear(in_features=16, out_features=512, bias=False)
     (transformer_blocks): ModuleList(
@@ -125,42 +115,47 @@ distributed=False)
     (map_layer1): Linear(in_features=512, out_features=512, bias=True)
   )
 )
-[18:08:50.633838] number of params (M): 164.20
-[18:08:50.633843] actual lr: 1.00e-04
-[18:08:50.633845] accumulate grad iterations: 1
-[18:08:50.633846] effective batch size: 27
-[18:08:50.634645] criterion = <models_class_cond.EDMLoss object at 0x7f69f94a1b50>
-[18:08:50.634652] Start training for 1000 epochs
-[18:08:50.646232] log_dir: output/ldm/shapenet/car
-[18:08:51.449743] Epoch: [0]  [0/2]  eta: 0:00:01  lr: 0.000000  loss: 0.9523 (0.9523)  time: 0.7331  data: 0.1348  max mem: 27316
-[18:08:51.868638] Epoch: [0]  [1/2]  eta: 0:00:00  lr: 0.000001  loss: 0.9507 (0.9515)  time: 0.5758  data: 0.0674  max mem: 28539
-[18:08:51.898805] Epoch: [0] Total time: 0:00:01 (0.5915 s / it)
-[18:08:51.898862] Averaged stats: lr: 0.000001  loss: 0.9507 (0.9515)
-[18:08:53.468725] Test:  [0/2]  eta: 0:00:00  loss: 0.9954 (0.9954)  time: 0.1594  data: 0.1324  max mem: 28539
-[18:08:53.487376] Test:  [1/2]  eta: 0:00:00  loss: 0.9954 (0.9969)  time: 0.0889  data: 0.0662  max mem: 28539
-[18:08:53.513464] Test: Total time: 0:00:00 (0.1023 s / it)
-[18:08:53.513511] * loss 0.997
-[18:08:53.513601] loss of the network on the 2 test images: 0.997
-[18:08:53.519074] log_dir: output/ldm/shapenet/car
-[18:08:54.100400] Epoch: [1]  [0/2]  eta: 0:00:01  lr: 0.000002  loss: 0.9495 (0.9495)  time: 0.5751  data: 0.1272  max mem: 28540
-[18:08:54.555089] Epoch: [1]  [1/2]  eta: 0:00:00  lr: 0.000003  loss: 0.9495 (0.9615)  time: 0.5146  data: 0.0637  max mem: 28540
-[18:08:54.580196] Epoch: [1] Total time: 0:00:01 (0.5277 s / it)
-[18:08:54.580232] Averaged stats: lr: 0.000003  loss: 0.9495 (0.9615)
-[18:09:07.128887] -------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+[10:09:35.263247] number of params (M): 164.20
+[10:09:35.263252] actual lr: 1.00e-04
+[10:09:35.263254] accumulate grad iterations: 1
+[10:09:35.263256] effective batch size: 27
+[10:09:35.263910] criterion = <models_class_cond.EDMLoss object at 0x7f7384405820>
+[10:09:35.263916] Start training for 1000 epochs
+[10:09:35.278897] log_dir: output/ldm/shapenet/car
+[10:09:35.940219] Epoch: [0]  [0/2]  eta: 0:00:01  lr: 0.000000  loss: 0.9523 (0.9523)  time: 0.6030  data: 0.1186  max mem: 27316
+[10:09:36.267855] Epoch: [0]  [1/2]  eta: 0:00:00  lr: 0.000001  loss: 0.9507 (0.9515)  time: 0.4651  data: 0.0593  max mem: 28539
+[10:09:36.291682] Epoch: [0] Total time: 0:00:00 (0.4776 s / it)
+[10:09:36.291721] Averaged stats: lr: 0.000001  loss: 0.9507 (0.9515)
+[10:09:37.813322] Test:  [0/2]  eta: 0:00:00  loss: 0.9954 (0.9954)  time: 0.1426  data: 0.1127  max mem: 28539
+[10:09:37.831671] Test:  [1/2]  eta: 0:00:00  loss: 0.9954 (0.9969)  time: 0.0803  data: 0.0564  max mem: 28539
+[10:09:37.854494] Test: Total time: 0:00:00 (0.0921 s / it)
+[10:09:37.854555] * loss 0.997
+[10:09:37.854676] loss of the network on the 2 test images: 0.997
+[10:09:37.860401] log_dir: output/ldm/shapenet/car
+[10:09:38.368148] Epoch: [1]  [0/2]  eta: 0:00:01  lr: 0.000002  loss: 0.9495 (0.9495)  time: 0.5018  data: 0.1413  max mem: 28540
+[10:09:38.743694] Epoch: [1]  [1/2]  eta: 0:00:00  lr: 0.000003  loss: 0.9495 (0.9615)  time: 0.4384  data: 0.0707  max mem: 28540
+[10:09:38.765798] Epoch: [1] Total time: 0:00:00 (0.4499 s / it)
+[10:09:38.765834] Averaged stats: lr: 0.000003  loss: 0.9495 (0.9615)
+[10:09:38.772200] log_dir: output/ldm/shapenet/car
+[10:09:39.275381] Epoch: [2]  [0/2]  eta: 0:00:00  lr: 0.000004  loss: 0.9382 (0.9382)  time: 0.4973  data: 0.1350  max mem: 28540
+[10:09:39.652075] Epoch: [2]  [1/2]  eta: 0:00:00  lr: 0.000005  loss: 0.9382 (0.9412)  time: 0.4368  data: 0.0675  max mem: 28540
+[10:09:39.675381] Epoch: [2] Total time: 0:00:00 (0.4489 s / it)
+[10:09:39.675422] Averaged stats: lr: 0.000005  loss: 0.9382 (0.9412)
+[10:09:57.933885] -------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
                                                    Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg       CPU Mem  Self CPU Mem      CUDA Mem  Self CUDA Mem    # of Calls  
 -------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
-                                          train_epoch_0         0.00%       0.000us         0.00%       0.000us       0.000us        1.221s        69.58%        1.221s        1.221s           0 b           0 b           0 b           0 b             1  
-                                          train_epoch_1         0.00%       0.000us         0.00%       0.000us       0.000us        1.035s        58.97%        1.035s        1.035s           0 b           0 b           0 b           0 b             1  
-                                           aten::linear         0.10%       3.288ms         5.49%     172.686ms      84.650us       0.000us         0.00%     947.864ms     464.639us           0 b           0 b      39.15 Gb           0 b          2040  
-                                            aten::addmm         2.20%      69.184ms         4.55%     143.145ms     122.977us     573.414ms        32.67%     875.422ms     752.081us           0 b           0 b      28.52 Gb      27.39 Gb          1164  
-                                          train_epoch_1         7.26%     228.473ms        33.93%        1.068s        1.068s       0.000us         0.00%     611.133ms     611.133ms           0 b      -1.69 Mb           0 b     -84.36 Gb             1  
-                                          train_epoch_0         7.43%     233.764ms        39.99%        1.258s        1.258s       0.000us         0.00%     607.941ms     607.941ms       1.91 Kb      -1.69 Mb       1.24 Gb     -84.38 Gb             1  
-                                               aten::mm         0.63%      19.890ms         6.64%     208.806ms      65.109us     523.598ms        29.83%     531.699ms     165.793us           0 b           0 b      41.33 Gb      41.33 Gb          3207  
-void sgemm_largek_lds64<true, false, 5, 5, 4, 4, 4, ...         0.00%       0.000us         0.00%       0.000us       0.000us     462.605ms        26.36%     462.605ms       1.174ms           0 b           0 b           0 b           0 b           394  
-    autograd::engine::evaluate_function: AddmmBackward0         0.08%       2.672ms         8.09%     254.572ms     374.370us       0.000us         0.00%     349.551ms     514.045us           0 b           0 b     -18.37 Gb     -38.10 Gb           680  
-                                    Command Buffer Full        22.91%     720.703ms        22.91%     720.703ms     159.908us     341.273ms        19.44%     341.273ms      75.721us           0 b           0 b           0 b           0 b          4507  
+                                          train_epoch_0         0.00%       0.000us         0.00%       0.000us       0.000us     987.701ms        46.59%     987.701ms     987.701ms           0 b           0 b           0 b           0 b             1  
+                                          train_epoch_1         0.00%       0.000us         0.00%       0.000us       0.000us     882.381ms        41.62%     882.381ms     882.381ms           0 b           0 b           0 b           0 b             1  
+                                          train_epoch_2         0.00%       0.000us         0.00%       0.000us       0.000us     878.987ms        41.46%     878.987ms     878.987ms           0 b           0 b           0 b           0 b             1  
+                                               aten::mm         0.74%      28.748ms         7.99%     312.052ms      66.907us     820.824ms        38.71%     822.559ms     176.363us           0 b           0 b      61.85 Gb      61.85 Gb          4664  
+    autograd::engine::evaluate_function: AddmmBackward0         0.18%       7.007ms        10.13%     395.877ms     388.114us       0.000us         0.00%     582.707ms     571.281us           0 b           0 b     -27.57 Gb     -57.16 Gb          1020  
+                                         AddmmBackward0         0.08%       3.199ms         6.79%     265.342ms     260.140us       0.000us         0.00%     550.837ms     540.036us           0 b           0 b      29.58 Gb           0 b          1020  
+                                           aten::linear         0.11%       4.405ms         3.44%     134.575ms      49.476us       0.000us         0.00%     438.364ms     161.163us           0 b           0 b      58.35 Gb           0 b          2720  
+                                            aten::addmm         1.79%      69.872ms         2.41%      94.059ms      60.605us     328.803ms        15.51%     341.598ms     220.102us           0 b           0 b      42.52 Gb      42.52 Gb          1552  
+                                          train_epoch_0         6.20%     242.245ms        26.13%        1.021s        1.021s       0.000us         0.00%     289.531ms     289.531ms       1.91 Kb      -1.69 Mb       1.24 Gb     -84.38 Gb             1  
+                                              aten::mul         0.32%      12.679ms         1.77%      69.076ms      19.167us     266.803ms        12.58%     267.029ms      74.092us         -32 b         -32 b     183.99 Gb     183.88 Gb          3604  
 -------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
-Self CPU time total: 3.146s
-Self CUDA time total: 1.755s
+Self CPU time total: 3.907s
+Self CUDA time total: 2.120s
 
-[18:09:07.128910] Training time 0:00:16
+[10:09:57.933909] Training time 0:00:22

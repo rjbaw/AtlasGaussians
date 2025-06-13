@@ -11,14 +11,14 @@ from typing import Iterable
 
 import torch
 import torch.nn.functional as F
-torch.backends.cuda.enable_flash_sdp(True)
-torch.backends.cuda.enable_mem_efficient_sdp(True)
 
 import util.misc as misc
 import util.lr_sched as lr_sched
 
 from models.clip import clip
 from models.models_lp import DiagonalGaussianDistribution
+
+import torch.cuda.nvtx as nvtx
 
 scale_factor = 1.0 / 1.33  # NOTE: this scale is specific to Objaverse, NOT ShapeNet
 
@@ -48,11 +48,17 @@ def train_one_epoch(model: torch.nn.Module, ae: torch.nn.Module, criterion: torc
 
         # we use a per iteration (instead of per epoch) lr scheduler
         if data_iter_step % accum_iter == 0:
+            nvtx.range_push("lr_scheduler")
             lr_sched.adjust_learning_rate2(optimizer, data_iter_step / len(data_loader) + epoch, args)
+            nvtx.range_pop()
 
+        nvtx.range_push("to_device")
         data_dict = misc.to_device(data_dict, device)
+        nvtx.range_pop()
 
         with torch.amp.autocast(device_type="cuda", enabled=False):
+
+            nvtx.range_push("forward_and_loss")
 
             posterior = DiagonalGaussianDistribution(data_dict['mean'], data_dict['logvar'])
             x = posterior.sample()
@@ -82,6 +88,8 @@ def train_one_epoch(model: torch.nn.Module, ae: torch.nn.Module, criterion: torc
 
             loss = criterion(model, x, text_features, **model_kwargs)
 
+            nvtx.range_pop()
+
         loss_value = loss.item()
 
         if not math.isfinite(loss_value):
@@ -89,11 +97,14 @@ def train_one_epoch(model: torch.nn.Module, ae: torch.nn.Module, criterion: torc
             sys.exit(1)
 
         loss /= accum_iter
+
+        nvtx.range_push("backward_and_opt")
         loss_scaler(loss, optimizer, clip_grad=max_norm,
                     parameters=model.parameters(), create_graph=False,
                     update_grad=(data_iter_step + 1) % accum_iter == 0)
         if (data_iter_step + 1) % accum_iter == 0:
             optimizer.zero_grad()
+        nvtx.range_pop()
 
         torch.cuda.synchronize()
 
@@ -144,6 +155,7 @@ def evaluate(data_loader, model, ae, clip_model, criterion, device):
         # compute output
         with torch.amp.autocast(device_type="cuda", enabled=False):
 
+            nvtx.range_push("eval_forward_and_loss")
             posterior = DiagonalGaussianDistribution(data_dict['mean'], data_dict['logvar'])
             x = posterior.sample()
             x = x * scale_factor
@@ -171,6 +183,7 @@ def evaluate(data_loader, model, ae, clip_model, criterion, device):
                 text_features = null_features.expand(B, -1, -1)  # [B, 1, 512]
 
             loss = criterion(model, x, text_features, **model_kwargs)
+            nvtx.range_pop()
             
         metric_logger.update(loss=loss.item())
 

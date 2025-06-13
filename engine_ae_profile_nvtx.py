@@ -17,9 +17,6 @@ import torch
 import torch.nn.functional as F
 import pytorch3d.loss
 
-torch.backends.cuda.enable_flash_sdp(True)
-torch.backends.cuda.enable_mem_efficient_sdp(True)
-
 import util.misc as misc
 import util.lr_sched as lr_sched
 from util.image_utils import compute_psnr
@@ -32,6 +29,7 @@ from gs import GaussianModel, gs_render
 IMAGENET_DEFAULT_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_DEFAULT_STD = (0.229, 0.224, 0.225)
 
+import torch.cuda.nvtx as nvtx
 
 def compute_loss(
     data_dict,
@@ -57,9 +55,12 @@ def compute_loss(
         2048 + (config.loss.sample_cd_iter + 1) * 8192
     )  # extra 8192 for xyz_render
     # anchor
+    nvtx.range_push("chamfer distance lp0")
     loss_lp0, _ = pytorch3d.loss.chamfer_distance(
         outputs_dict["anchors"], data_dict["points"][:, :2048, :]
     )
+    nvtx.range_pop()
+
     outputs_dict["loss_lp0"] = loss_lp0
 
     # lp
@@ -82,14 +83,20 @@ def compute_loss(
         raise NotImplementedError
     assert (xyz_lp.shape[-2] == 4) and (xyz_lp.shape == xyz_gt.shape)
 
+    nvtx.range_push("chamfer distance lp1")
     loss_lp1, _ = pytorch3d.loss.chamfer_distance(
         rearrange(xyz_lp[:, :, :1, :], "b n s d -> b (n s) d"),
         rearrange(xyz_gt[:, :, :1, :], "b n s d -> b (n s) d"),
     )
+    nvtx.range_pop()
+
+    nvtx.range_push("chamfer distance lp2")
     loss_lp2, _ = pytorch3d.loss.chamfer_distance(
         rearrange(xyz_lp[:, :, :4, :], "b n s d -> b (n s) d"),
         rearrange(xyz_gt[:, :, :4, :], "b n s d -> b (n s) d"),
     )
+    nvtx.range_pop()
+
     outputs_dict["loss_lp1"] = loss_lp1
     outputs_dict["loss_lp2"] = loss_lp2
 
@@ -98,12 +105,17 @@ def compute_loss(
         gaussians_render[:, :, :, :3], "b n s d -> b (n s) d"
     )  # [B, N*S, 3]
     rand_idx = np.random.default_rng().choice(xyz_render.shape[1], 8192, replace=False)
+
+    nvtx.range_push("chamfer distance lp_render")
     loss_lp_render, _ = pytorch3d.loss.chamfer_distance(
         xyz_render[:, rand_idx, :], data_dict["points"][:, -8192:, :]
     )
+    nvtx.range_pop()
+
     outputs_dict["loss_lp_render"] = loss_lp_render
 
     ######################## EMD loss ########################
+    nvtx.range_push("emd_loss")
     if config.loss.emd_weight != 0.0:
         loss_lp_emd0 = EMD(
             outputs_dict["anchors"],
@@ -134,6 +146,7 @@ def compute_loss(
     outputs_dict["loss_lp_emd2"] = loss_lp_emd2
     outputs_dict["loss_lp_emd_render"] = loss_lp_emd_render
 
+    nvtx.range_pop()
     ######################## rendering loss ########################
     if config.loss.imagenet_background:
         bg_color = torch.tensor(
@@ -152,6 +165,7 @@ def compute_loss(
     outputs_dict["depths_gt"] = depths_gt
     outputs_dict["images_gt"] = images_gt
 
+    nvtx.range_push("gs_render")
     render_dict = gs_render(
         gaussians=rearrange(gaussians_render, "b n s d -> b (n s) d"),
         R=data_dict["world2cams"][:, :, :3, :3],
@@ -160,6 +174,7 @@ def compute_loss(
         output_size=data_dict["img_size_render"][0].item(),
         bg_color=bg_color,
     )
+    nvtx.range_pop()
 
     # mse loss
     loss_render_rgb = F.mse_loss(render_dict["images"], images_gt)
@@ -207,6 +222,8 @@ def compute_loss(
     assert config.loss.render_epochs <= config.loss.lpips_epochs
     if epoch > config.loss.lpips_epochs:
         # lpips loss: downsampled to at most 256 to reduce memory cost
+
+        nvtx.range_push("lpips")
         loss_lpips = model.lpips_loss(
             F.interpolate(
                 rearrange(images_gt, "b v d h w -> (b v) d h w") * 2 - 1,
@@ -221,6 +238,8 @@ def compute_loss(
                 align_corners=False,
             ),
         ).mean()
+        nvtx.range_pop()
+
         outputs_dict["loss_lpips"] = loss_lpips
         loss += loss_lpips * config.loss.lpips_weight
 
@@ -278,12 +297,19 @@ def train_one_epoch(
                     vmin=0.0, vmax=1.0, res=int(np.sqrt(num_samples)), device=device
                 ).reshape(-1, 2)
                 queries_grid = repeat(queries_grid, "s d -> b n s d", b=B, n=N)
+
+                nvtx.range_push("model_forward")
                 outputs_dict = model(
                     data_dict["rgb_inputs"], data_dict["points_input"], queries_grid
                 )  # [B, N, S, 14]
+                nvtx.range_pop()
+
+                nvtx.range_push("gaussian render")
                 gaussians_render = gaussian_model(
                     outputs_dict["gs"]
                 )  # [B, N, S, 14], the activated values
+                nvtx.range_pop()
+
             else:  # grid samples
                 raise NotImplementedError()
 
@@ -295,15 +321,22 @@ def train_one_epoch(
                 queries_lp = torch.rand(
                     B, N, num_samples_cd_total, 2, dtype=torch.float32, device=device
                 )
+
+                nvtx.range_push("lp_net query_decode lpnet cost")
                 gs_lp = model.lp_net.query_decode(
                     queries_lp,
                     outputs_dict["anchors"],
                     outputs_dict["anchor_feats_geom"],
                     outputs_dict["anchor_feats_attr"],
                 )
+                nvtx.range_pop()
+
+                nvtx.range_push("gaussian lp")
                 gaussians_lp = gaussian_model(
                     gs_lp
                 )  # [B, N, S, 14], the activated values
+                nvtx.range_pop()
+
             else:
                 raise NotImplementedError()
 
@@ -330,6 +363,8 @@ def train_one_epoch(
             sys.exit(1)
 
         loss /= accum_iter
+
+        nvtx.range_push("backward+step")
         loss_scaler(
             loss,
             optimizer,
@@ -338,6 +373,8 @@ def train_one_epoch(
             create_graph=False,
             update_grad=(data_iter_step + 1) % accum_iter == 0,
         )
+        nvtx.range_pop()
+
         if (data_iter_step + 1) % accum_iter == 0:
             optimizer.zero_grad()
 
@@ -442,9 +479,13 @@ def evaluate(data_loader, model, device, config, epoch):
         with torch.amp.autocast(device_type="cuda", enabled=config.train.use_fp16):
             if config.loss.render_gs_type == "grid":
                 assert config.loss.render_gs_type == "grid"
+
+                nvtx.range_push("build_grid2D")
                 queries_grid = build_grid2D(
                     vmin=0.0, vmax=1.0, res=int(np.sqrt(num_samples)), device=device
                 ).reshape(-1, 2)
+                nvtx.range_pop()
+
                 queries_grid = repeat(queries_grid, "s d -> b n s d", b=B, n=N)
                 outputs_dict = model(
                     data_dict["rgb_inputs"], data_dict["points_input"], queries_grid
@@ -463,15 +504,22 @@ def evaluate(data_loader, model, device, config, epoch):
                 queries_lp = torch.rand(
                     B, N, num_samples_cd_total, 2, dtype=torch.float32, device=device
                 )
+
+                nvtx.range_push("lp_net query_decode gs decode")
                 gs_lp = model.lp_net.query_decode(
                     queries_lp,
                     outputs_dict["anchors"],
                     outputs_dict["anchor_feats_geom"],
                     outputs_dict["anchor_feats_attr"],
                 )
+                nvtx.range_pop()
+
+                nvtx.range_push("gaussian lp")
                 gaussians_lp = gaussian_model(
                     gs_lp
                 )  # [B, N, S, 14], the activated values
+                nvtx.range_pop()
+
             else:
                 raise NotImplementedError()
 

@@ -20,7 +20,7 @@ import util.misc as misc
 from util.misc import NativeScalerWithGradNormCount as NativeScaler
 
 from models.models_lp import KLAutoEncoder
-from engine_ae import train_one_epoch, evaluate, inference
+from engine_ae_profile_nvtx import train_one_epoch, evaluate, inference
 
 import torch.cuda.nvtx as nvtx
 
@@ -243,12 +243,12 @@ def main(args, config):
                 collate_fn=collate_fn_filter_none,
             )
             inference(data_loader_infer, model, device, config, args)
-        nvtx.range_pop(0)
+        nvtx.range_pop()
         exit(0)
 
     print(f"Start training for {config.train.epochs} epochs")
     start_time = time.time()
-    for epoch in range(args.start_epoch, args.start_epoch+2):
+    for epoch in range(args.start_epoch, args.start_epoch+3):
         if args.distributed:
             data_loader_train.sampler.set_epoch(epoch)
         nvtx.range_push(f"train_epoch_{epoch}")

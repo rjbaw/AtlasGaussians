@@ -9,7 +9,7 @@ from models.dit_models import DiT
 
 import numpy as np
 
-import xformers.ops as xops
+import torch.cuda.nvtx as nvtx
 
 def zero_module(module):
     """
@@ -76,12 +76,6 @@ class CrossAttention(nn.Module):
         out = torch.einsum('b i j, b j d -> b i d', attn, v)
         out = rearrange(out, '(b h) n d -> b n (h d)', h=h)
         return self.to_out(out)
-
-        # q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> (b h) n d', h=h),
-        #             (q, k, v))
-        # out = xops.memory_efficient_attention(q, k, v)
-        # out = rearrange(out, '(b h) n d -> b n (h d)', h=h)
-        # return self.to_out(out)
 
 
 class LayerScale(nn.Module):
@@ -171,9 +165,19 @@ class BasicTransformerBlock(nn.Module):
             drop_path) if drop_path > 0. else nn.Identity()
 
     def forward(self, x, t, context=None):
+
+        nvtx.range_push("Block Self Attention")
         x = self.drop_path1(self.ls1(self.attn1(self.norm1(x, t)))) + x
+        nvtx.range_pop()
+
+        nvtx.range_push("Block Cross Attention")
         x = self.drop_path2(self.ls2(self.attn2(self.norm2(x, t), context=context))) + x
+        nvtx.range_pop()
+
+        nvtx.range_push("Block FFN")
         x = self.drop_path3(self.ls3(self.ff(self.norm3(x, t)))) + x
+        nvtx.range_pop()
+
         return x
 
 class LatentArrayTransformer(nn.Module):
@@ -221,9 +225,11 @@ class LatentArrayTransformer(nn.Module):
         assert (len(x.shape) == 3) and (len(t.shape) == 1) and (len(cond.shape) == 3)
         B = x.shape[0]
 
+        nvtx.range_push("lat: map noise to t_emb")
         t_emb = self.map_noise(t)[:, None]
         t_emb = F.silu(self.map_layer0(t_emb))
         t_emb = F.silu(self.map_layer1(t_emb))  # [B, 1, d]
+        nvtx.range_pop()
 
         if self.training and self.cond_dropout_prob > 0:
             assert 'uncond' in kwargs
@@ -234,14 +240,18 @@ class LatentArrayTransformer(nn.Module):
         else:
             y = cond
 
+        nvtx.range_push("lat: proj_in")
         x = self.proj_in(x)  # [B, N, d]
+        nvtx.range_pop()
 
         for block in self.transformer_blocks:
             x = block(x, t_emb, context=y)  # [B, N, d]
         
         x = self.norm(x)
 
+        nvtx.range_push("lat: proj_out")
         x = self.proj_out(x)  # [B, N, d_x]
+        nvtx.range_pop()
         return x
 
     def forward_with_cfg(self, x, t, y, cfg_scale):
@@ -280,21 +290,29 @@ def edm_sampler(
     for i, (t_cur, t_next) in enumerate(zip(t_steps[:-1], t_steps[1:])): # 0, ..., N-1
         x_cur = x_next
 
+        nvtx.range_push("Noise Injection")
         # Increase noise temporarily.
         gamma = min(S_churn / num_steps, np.sqrt(2) - 1) if S_min <= t_cur <= S_max else 0
         t_hat = net.round_sigma(t_cur + gamma * t_cur)
         x_hat = x_cur + (t_hat ** 2 - t_cur ** 2).sqrt() * S_noise * randn_like(x_cur)
+        nvtx.range_pop()
 
+        nvtx.range_push("Denoiser Forward")
         # Euler step.
         denoised = net(x_hat, t_hat, class_labels, cfg_scale=cfg_scale).to(torch.float64)
+        nvtx.range_pop()
+        nvtx.range_push("Euler Update")
         d_cur = (x_hat - denoised) / t_hat
         x_next = x_hat + (t_next - t_hat) * d_cur
+        nvtx.range_pop()
 
         # Apply 2nd order correction.
         if i < num_steps - 1:
+            nvtx.range_push("2nd order correction")
             denoised = net(x_next, t_next, class_labels, cfg_scale=cfg_scale).to(torch.float64)
             d_prime = (x_next - denoised) / t_next
             x_next = x_hat + (t_next - t_hat) * (0.5 * d_cur + 0.5 * d_prime)
+            nvtx.range_pop()
 
     return x_next
 
@@ -520,6 +538,7 @@ class EDMPrecond(torch.nn.Module):
 
     def forward(self, x, sigma, class_labels=None, force_fp32=False, cfg_scale=None, **kwargs):
                 
+        nvtx.range_push("EDMPrecond: prep")
         assert class_labels.dtype == torch.float32
         if class_labels.dtype == torch.float32:
             cond_emb = class_labels
@@ -535,13 +554,21 @@ class EDMPrecond(torch.nn.Module):
         c_out = sigma * self.sigma_data / (sigma ** 2 + self.sigma_data ** 2).sqrt()
         c_in = 1 / (self.sigma_data ** 2 + sigma ** 2).sqrt()
         c_noise = sigma.log() / 4
+        nvtx.range_pop()
 
+        nvtx.range_push("EDMPrecond: model call")
         if (not self.training) and ('uncond' not in kwargs) and (cfg_scale is not None):
             F_x = self.model.forward_with_cfg((c_in * x).to(dtype), c_noise.flatten(), cond_emb, cfg_scale=cfg_scale)
         else:
             F_x = self.model((c_in * x).to(dtype), c_noise.flatten(), cond=cond_emb, **kwargs)
+        nvtx.range_pop()
+
         assert F_x.dtype == dtype
+
+        nvtx.range_push("EDMPrecond: combine")
         D_x = c_skip * x + c_out * F_x.to(torch.float32)
+        nvtx.range_pop()
+        
         return D_x
 
     def round_sigma(self, sigma):

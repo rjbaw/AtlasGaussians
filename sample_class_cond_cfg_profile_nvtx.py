@@ -10,7 +10,7 @@ import imageio.v3 as iio
 
 import torch
 
-import models_class_cond
+import models_class_cond_profile_nvtx as models_class_cond
 from models.models_lp import KLAutoEncoder
 import util.misc as misc
 from models.clip import clip
@@ -134,7 +134,7 @@ if __name__ == "__main__":
             
             for seed in [args.seed]:
 
-                for i in tqdm(range(2)):
+                for i in tqdm(range(3)):
                     nvtx.range_push("tokenize+encode")
 
                     text_token = clip.tokenize(

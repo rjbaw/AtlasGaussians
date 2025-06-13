@@ -10,29 +10,6 @@ bash scripts/env_setup.sh
 
 ```
 
-### Install diff-gaussian-rasterization (temporary setup for now)
-```
-cd util/
-git clone --recursive https://github.com/ashawkey/diff-gaussian-rasterization
-mv diff-gaussian-rasterization diff-gaussian-rasterization_extended  # to avoid conflicts between original gaussian-rasterization
-cd diff-gaussian-rasterization_extended
-mv diff_gaussian_rasterization diff_gaussian_rasterization_extended
-```
-
-update `setup.py` with the following changes:
-```
-name="diff_gaussian_rasterization_extended",
-packages=['diff_gaussian_rasterization_extended'],
-    ...
-    name="diff_gaussian_rasterization_extended._C",
-```
-
-Then:
-```
-cd ..
-pip install ./diff-gaussian-rasterization_extended
-```
-
 ## Reproducing Results
 
 Download the checkpoint from [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/output). 
@@ -63,7 +40,7 @@ Unzip the file and put it under the `data_root` (default at `data/objaverse/`).
 For more details of the dataset, please refer to Section A.1 in the appendix of the paper. Please also cite [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse) if you use the point clouds.
 
 
-#### ShapeNetCorev2 (temp)
+#### ShapeNetCorev2
 Download [ShapenetCorev2](https://shapenet.org). Place them under `util/shapenet_renderer/data/` or any other path.
 
 ```
@@ -101,31 +78,9 @@ The repo is built based on:
 
 ## Others
 
-- We also provide `evaluations/readme.md` for evaluation. The evaluation scripts are built from [LN3Diff](https://github.com/NIRVANALAN/LN3Diff).
 
 - If you encounter errors related to CUDA, consider setting `cudnn.enabled = False` (line 80 in `main_ae.py`).
 
 - We find that cleaning the dataset is quite important for training. For more details, see Section A.1 in the appendix of the paper.
 
-- Our models are trained on three general categories only (Transportation, Furniture, and Animals) and can not generalize to other general categories.
-
-
-## Citation
-
-```bibtex
-@inproceedings{
-      yang2025atlas,
-      title={Atlas Gaussians Diffusion for 3D Generation},
-      author={Haitao Yang and Yuan Dong and Hanwen Jiang and Dejia Xu and Georgios Pavlakos and Qixing Huang},
-      booktitle={The Thirteenth International Conference on Learning Representations},
-      year={2025},
-      url={https://openreview.net/forum?id=H2Gxil855b}
-}
-```
-
-## Contact
-
-If you have any questions, you can contact Haitao Yang (yanghtr [AT] outlook [DOT] com).
-
-
-
+- Our models are trained on three general c

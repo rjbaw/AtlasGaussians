@@ -20,5 +20,5 @@ xformers @ git+https://github.com/facebookresearch/xformers.git@da84ce3a8fc07e8b
 torch-cluster
 ninja
 pytorch3d @ git+https://github.com/facebookresearch/pytorch3d.git@366eff21d9d1853a87961129625adb42032af665
+diff_gaussian_rasterization @ git+https://github.com/ashawkey/diff-gaussian-rasterization
 util/emd
-util/diff-gaussian-rasterization_extended

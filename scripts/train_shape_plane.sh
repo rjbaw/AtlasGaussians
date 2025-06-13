@@ -15,7 +15,7 @@ full_log_dir="output/vae/shapenet/vae_plane_full"
 echo ">>> Stage 0: generate data splits"
 python split.py --config "${config_path}" --ratio 0.8
 
-echo ">>> Stage 1: training with config=${config_path} → log_dir=${log_dir}"
+echo ">>> Stage 1: training with config=${config_path} -> log_dir=${log_dir}"
 python main_ae.py --config "${config_path}" --log_dir "${log_dir}"
 
 
@@ -40,7 +40,6 @@ torch.save({"model": ckpt["model"]}, "${model_only_path}")
 EOF
 
 echo ">>> Saved model-only checkpoint."
-
 
 ##########################
 # Stage 2: Resume Training from model-only
@@ -80,7 +79,7 @@ python main_ae.py \
 
 mkdir -p "${dm_log_dir}"
 
-echo ">>> Stage 3: training diffusion model → log_dir=${dm_log_dir}"
+echo ">>> Stage 3: training diffusion model -> log_dir=${dm_log_dir}"
 
 python main_class_cond.py \
   --accum_iter 1 \

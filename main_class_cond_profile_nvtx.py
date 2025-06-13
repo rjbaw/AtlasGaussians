@@ -19,10 +19,11 @@ from util.datasets import build_shape_surface_occupancy_dataset
 from util.misc import NativeScalerWithGradNormCount as NativeScaler
 
 from models.models_lp import KLAutoEncoder
-import models_class_cond, models_ae
+import models_class_cond_profile_nvtx as models_class_cond
+import models_ae
 from models.clip import clip
 
-from engine_class_cond import train_one_epoch, evaluate
+from engine_class_cond_profile_nvtx import train_one_epoch, evaluate
 
 import torch.cuda.nvtx as nvtx
 
@@ -214,7 +215,7 @@ def main(args, config_ae):
 
     print(f"Start training for {args.epochs} epochs")
     start_time = time.time()
-    for epoch in range(args.start_epoch, args.start_epoch+2):
+    for epoch in range(args.start_epoch, args.start_epoch+3):
         if args.distributed:
             data_loader_train.sampler.set_epoch(epoch)
 

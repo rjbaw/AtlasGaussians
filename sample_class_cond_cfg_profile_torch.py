@@ -140,7 +140,7 @@ if __name__ == "__main__":
 
                 for seed in [args.seed]:
 
-                    for i in tqdm(range(2)):
+                    for i in tqdm(range(3)):
 
                         with record_function("tokenize+encode"):
                             text_token = clip.tokenize(

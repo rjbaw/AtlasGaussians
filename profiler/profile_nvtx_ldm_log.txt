@@ -1,6 +1,6 @@
 Not using distributed mode
-[22:57:35.960193] job dir: /home/rb/AtlasGaussians
-[22:57:35.960224] Namespace(batch_size=27,
+[19:23:45.135207] job dir: /home/rb/AtlasGaussians
+[19:23:45.135237] Namespace(batch_size=27,
 epochs=1000,
 replica=8,
 accum_iter=1,
@@ -29,42 +29,125 @@ dist_on_itp=False,
 dist_url='env://',
 output_dir='output/ldm/shapenet/car/ckpt',
 distributed=False)
-[22:57:35.974089] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7f17832e3f80>
-[22:57:36.004841] Copied .gitignore to output/ldm/shapenet/car/code/.gitignore
-[22:57:36.004894] Copied README.md to output/ldm/shapenet/car/code/README.md
-[22:57:36.004936] Copied config/objaverse/train_18k_base.yaml to output/ldm/shapenet/car/code/config/objaverse/train_18k_base.yaml
-[22:57:36.004965] Copied config/objaverse/train_18k_full.yaml to output/ldm/shapenet/car/code/config/objaverse/train_18k_full.yaml
-[22:57:36.004993] Copied config/shapenet/train_car_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_car_base.yaml
-[22:57:36.005020] Copied config/shapenet/train_car_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_car_full.yaml
-[22:57:36.005047] Copied config/shapenet/train_chair_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_chair_base.yaml
-[22:57:36.005074] Copied config/shapenet/train_chair_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_chair_full.yaml
-[22:57:36.005098] Copied config/shapenet/train_plane_base.yaml to output/ldm/shapenet/car/code/config/shapenet/train_plane_base.yaml
-[22:57:36.005124] Copied config/shapenet/train_plane_full.yaml to output/ldm/shapenet/car/code/config/shapenet/train_plane_full.yaml
-[22:57:36.005164] Copied datasets/objaverse.py to output/ldm/shapenet/car/code/datasets/objaverse.py
-[22:57:36.005195] Copied datasets/shapenet.py to output/ldm/shapenet/car/code/datasets/shapenet.py
-[22:57:36.005223] Copied datasets/splits/shapenet/02691156_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_test.txt
-[22:57:36.005249] Copied datasets/splits/shapenet/02691156_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_train.txt
-[22:57:36.005276] Copied datasets/splits/shapenet/02958343_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02958343_test.txt
-[22:57:36.005305] Copied datasets/splits/shapenet/02958343_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02958343_train.txt
-[22:57:36.005331] Copied datasets/splits/shapenet/03001627_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/03001627_test.txt
-[22:57:36.005357] Copied datasets/splits/shapenet/03001627_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/03001627_train.txt
-[22:57:36.005398] Copied engine_ae.py to output/ldm/shapenet/car/code/engine_ae.py
-[22:57:36.005428] Copied engine_class_cond.py to output/ldm/shapenet/car/code/engine_class_cond.py
-[22:57:36.005457] Copied evaluations/fid_scores/fid.sh to output/ldm/shapenet/car/code/evaluations/fid_scores/fid.sh
-[22:57:36.005488] Copied evaluations/fid_scores/fid_score.py to output/ldm/shapenet/car/code/evaluations/fid_scores/fid_score.py
-[22:57:36.005513] Copied evaluations/fid_scores/kid.sh to output/ldm/shapenet/car/code/evaluations/fid_scores/kid.sh
-[22:57:36.005544] Copied evaluations/fid_scores/kid_score.py to output/ldm/shapenet/car/code/evaluations/fid_scores/kid_score.py
-[22:57:36.005573] Copied main_ae.py to output/ldm/shapenet/car/code/main_ae.py
-[22:57:36.005602] Copied main_class_cond.py to output/ldm/shapenet/car/code/main_class_cond.py
-[22:57:36.005627] Copied requirements.txt to output/ldm/shapenet/car/code/requirements.txt
-[22:57:36.005655] Copied sample_class_cond_cfg.py to output/ldm/shapenet/car/code/sample_class_cond_cfg.py
-[22:57:36.005683] Copied scripts/ldm/train_dgx.sh to output/ldm/shapenet/car/code/scripts/ldm/train_dgx.sh
-[22:57:36.005709] Copied scripts/vae/train_dgx.sh to output/ldm/shapenet/car/code/scripts/vae/train_dgx.sh
-[22:57:36.005736] Copied util/emd/README.md to output/ldm/shapenet/car/code/util/emd/README.md
-[22:57:36.005768] Copied util/misc.py to output/ldm/shapenet/car/code/util/misc.py
-[22:57:37.269983] Loading autoencoder output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth
+[19:23:45.148549] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7fb7d93bffb0>
+[19:23:45.178107] Copied README.md to output/ldm/shapenet/car/code/README.md
+[19:23:45.178166] Copied datasets/splits/shapenet/02691156_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_test.txt
+[19:23:45.178214] Copied datasets/splits/shapenet/02691156_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_train.txt
+[19:23:45.178261] Copied engine_ae.py to output/ldm/shapenet/car/code/engine_ae.py
+[19:23:45.178363] Copied engine_class_cond.py to output/ldm/shapenet/car/code/engine_class_cond.py
+[19:23:45.178394] Copied gs.py to output/ldm/shapenet/car/code/gs.py
+[19:23:45.178423] Copied main_ae_profile_nvtx.py to output/ldm/shapenet/car/code/main_ae_profile_nvtx.py
+[19:23:45.178456] Copied main_ae_profile_torch.py to output/ldm/shapenet/car/code/main_ae_profile_torch.py
+[19:23:45.178486] Copied main_class_cond_profile_nvtx.py to output/ldm/shapenet/car/code/main_class_cond_profile_nvtx.py
+[19:23:45.178515] Copied main_class_cond_profile_torch.py to output/ldm/shapenet/car/code/main_class_cond_profile_torch.py
+[19:23:45.178562] Copied models_class_cond.py to output/ldm/shapenet/car/code/models_class_cond.py
+[19:23:45.178594] Copied profiler/profile_nvtx_infer_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_infer_log.txt
+[19:23:45.178618] Copied profiler/profile_nvtx_ldm_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_ldm_log.txt
+[19:23:45.178659] Copied profiler/profile_nvtx_vae_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_vae_log.txt
+[19:23:45.178690] Copied profiler/profile_torch_ldm_log.txt to output/ldm/shapenet/car/code/profiler/profile_torch_ldm_log.txt
+[19:23:45.178715] Copied profiler/profile_torch_vae_log.txt to output/ldm/shapenet/car/code/profiler/profile_torch_vae_log.txt
+[19:23:45.178740] Copied requirements.txt to output/ldm/shapenet/car/code/requirements.txt
+[19:23:45.178768] Copied sample_class_cond_cfg_profile_nvtx.py to output/ldm/shapenet/car/code/sample_class_cond_cfg_profile_nvtx.py
+[19:23:45.178795] Copied sample_class_cond_cfg_profile_torch.py to output/ldm/shapenet/car/code/sample_class_cond_cfg_profile_torch.py
+[19:23:45.178821] Copied scripts/profile_ncu.sh to output/ldm/shapenet/car/code/scripts/profile_ncu.sh
+[19:23:45.178848] Copied scripts/profile_nvtx.sh to output/ldm/shapenet/car/code/scripts/profile_nvtx.sh
+[19:23:45.178874] Copied scripts/profile_torch.sh to output/ldm/shapenet/car/code/scripts/profile_torch.sh
+[19:23:45.178901] Copied scripts/train_shape_chair.sh to output/ldm/shapenet/car/code/scripts/train_shape_chair.sh
+[19:23:45.178939] Copied scripts/train_shape_plane.sh to output/ldm/shapenet/car/code/scripts/train_shape_plane.sh
+[19:23:45.178971] Copied util/emd/emd.cpp to output/ldm/shapenet/car/code/util/emd/emd.cpp
+[19:23:45.179008] Copied util/emd/emd_cuda.cu to output/ldm/shapenet/car/code/util/emd/emd_cuda.cu
+[19:23:46.506003] Loading autoencoder output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth
+[19:23:48.495465] Model = EDMPrecond(
+  (model): LatentArrayTransformer(
+    (proj_in): Linear(in_features=16, out_features=512, bias=False)
+    (transformer_blocks): ModuleList(
+      (0-23): 24 x BasicTransformerBlock(
+        (attn1): CrossAttention(
+          (to_q): Linear(in_features=512, out_features=512, bias=False)
+          (to_k): Linear(in_features=512, out_features=512, bias=False)
+          (to_v): Linear(in_features=512, out_features=512, bias=False)
+          (to_out): Sequential(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+            (1): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (ff): FeedForward(
+          (net): Sequential(
+            (0): GEGLU(
+              (proj): Linear(in_features=512, out_features=4096, bias=True)
+            )
+            (1): Dropout(p=0.0, inplace=False)
+            (2): Linear(in_features=2048, out_features=512, bias=True)
+          )
+        )
+        (attn2): CrossAttention(
+          (to_q): Linear(in_features=512, out_features=512, bias=False)
+          (to_k): Linear(in_features=512, out_features=512, bias=False)
+          (to_v): Linear(in_features=512, out_features=512, bias=False)
+          (to_out): Sequential(
+            (0): Linear(in_features=512, out_features=512, bias=True)
+            (1): Dropout(p=0.0, inplace=False)
+          )
+        )
+        (norm1): AdaLayerNorm(
+          (silu): SiLU()
+          (linear): Linear(in_features=512, out_features=1024, bias=True)
+          (layernorm): LayerNorm((512,), eps=1e-05, elementwise_affine=False)
+        )
+        (norm2): AdaLayerNorm(
+          (silu): SiLU()
+          (linear): Linear(in_features=512, out_features=1024, bias=True)
+          (layernorm): LayerNorm((512,), eps=1e-05, elementwise_affine=False)
+        )
+        (norm3): AdaLayerNorm(
+          (silu): SiLU()
+          (linear): Linear(in_features=512, out_features=1024, bias=True)
+          (layernorm): LayerNorm((512,), eps=1e-05, elementwise_affine=False)
+        )
+        (ls1): Identity()
+        (drop_path1): Identity()
+        (ls2): Identity()
+        (drop_path2): Identity()
+        (ls3): Identity()
+        (drop_path3): Identity()
+      )
+    )
+    (norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True)
+    (proj_out): Linear(in_features=512, out_features=16, bias=False)
+    (map_noise): PositionalEmbedding()
+    (map_layer0): Linear(in_features=256, out_features=512, bias=True)
+    (map_layer1): Linear(in_features=512, out_features=512, bias=True)
+  )
+)
+[19:23:48.495481] number of params (M): 164.20
+[19:23:48.495487] actual lr: 1.00e-04
+[19:23:48.495489] accumulate grad iterations: 1
+[19:23:48.495491] effective batch size: 27
+[19:23:48.496149] criterion = <models_class_cond_profile_nvtx.EDMLoss object at 0x7fb7cdf06b40>
+[19:23:48.496155] Start training for 1000 epochs
+[19:23:48.497414] log_dir: output/ldm/shapenet/car
+[19:23:49.398883] Epoch: [0]  [0/2]  eta: 0:00:01  lr: 0.000000  loss: 0.9523 (0.9523)  time: 0.8304  data: 0.2120  max mem: 27316
+[19:23:49.824302] Epoch: [0]  [1/2]  eta: 0:00:00  lr: 0.000001  loss: 0.9507 (0.9515)  time: 0.6277  data: 0.1060  max mem: 28539
+[19:23:49.857518] Epoch: [0] Total time: 0:00:01 (0.6447 s / it)
+[19:23:49.857553] Averaged stats: lr: 0.000001  loss: 0.9507 (0.9515)
+[19:23:51.218422] Test:  [0/2]  eta: 0:00:00  loss: 0.9954 (0.9954)  time: 0.1845  data: 0.1649  max mem: 28539
+[19:23:51.229685] Test:  [1/2]  eta: 0:00:00  loss: 0.9954 (0.9969)  time: 0.0978  data: 0.0825  max mem: 28539
+[19:23:51.263601] Test: Total time: 0:00:00 (0.1149 s / it)
+[19:23:51.263635] * loss 0.997
+[19:23:51.263705] loss of the network on the 2 test images: 0.997
+[19:23:51.265869] log_dir: output/ldm/shapenet/car
+[19:23:51.897490] Epoch: [1]  [0/2]  eta: 0:00:01  lr: 0.000002  loss: 0.9495 (0.9495)  time: 0.6279  data: 0.1702  max mem: 28540
+[19:23:52.375628] Epoch: [1]  [1/2]  eta: 0:00:00  lr: 0.000003  loss: 0.9495 (0.9615)  time: 0.5528  data: 0.0851  max mem: 28540
+[19:23:52.409575] Epoch: [1] Total time: 0:00:01 (0.5702 s / it)
+[19:23:52.409602] Averaged stats: lr: 0.000003  loss: 0.9495 (0.9615)
+[19:23:52.412990] log_dir: output/ldm/shapenet/car
+[19:23:53.047978] Epoch: [2]  [0/2]  eta: 0:00:01  lr: 0.000004  loss: 0.9382 (0.9382)  time: 0.6312  data: 0.1724  max mem: 28540
+[19:23:53.526117] Epoch: [2]  [1/2]  eta: 0:00:00  lr: 0.000005  loss: 0.9382 (0.9412)  time: 0.5545  data: 0.0862  max mem: 28540
+[19:23:53.559652] Epoch: [2] Total time: 0:00:01 (0.5717 s / it)
+[19:23:53.559681] Averaged stats: lr: 0.000005  loss: 0.9382 (0.9412)
+[19:23:53.561322] Training time 0:00:05
 Collecting data...
-Generating '/tmp/nsys-report-e4da.qdstrm'
-[1/1] [0%                          ] nsys-report-2cfa.nsys-rep[1/1] [0%                          ] nsys-report-2cfa.nsys-rep[1/1] [=======37%                  ] nsys-report-2cfa.nsys-rep[1/1] [=========44%                ] nsys-report-2cfa.nsys-rep[1/1] [===========51%              ] nsys-report-2cfa.nsys-rep[1/1] [============56%             ] nsys-report-2cfa.nsys-rep[1/1] [==============61%           ] nsys-report-2cfa.nsys-rep[1/1] [==============62%           ] nsys-report-2cfa.nsys-rep[1/1] [==============63%           ] nsys-report-2cfa.nsys-rep[1/1] [==============64%           ] nsys-report-2cfa.nsys-rep[1/1] [===============65%          ] nsys-report-2cfa.nsys-rep[1/1] [===============66%          ] nsys-report-2cfa.nsys-rep[1/1] [===============67%          ] nsys-report-2cfa.nsys-rep[1/1] [================69%         ] nsys-report-2cfa.nsys-rep[1/1] [================70%         ] nsys-report-2cfa.nsys-rep[1/1] [================71%         ] nsys-report-2cfa.nsys-rep[1/1] [=================72%        ] nsys-report-2cfa.nsys-rep[1/1] [=================73%        ] nsys-report-2cfa.nsys-rep[1/1] [=================74%        ] nsys-report-2cfa.nsys-rep[1/1] [==================75%       ] nsys-report-2cfa.nsys-rep[1/1] [==================76%       ] nsys-report-2cfa.nsys-rep[1/1] [==================77%       ] nsys-report-2cfa.nsys-rep[1/1] [===================80%      ] nsys-report-2cfa.nsys-rep[1/1] [===================81%      ] nsys-report-2cfa.nsys-rep[1/1] [===================82%      ] nsys-report-2cfa.nsys-rep[1/1] [====================83%     ] nsys-report-2cfa.nsys-rep[1/1] [====================84%     ] nsys-report-2cfa.nsys-rep[1/1] [====================85%     ] nsys-report-2cfa.nsys-rep[1/1] [=====================86%    ] nsys-report-2cfa.nsys-rep[1/1] [=====================87%    ] nsys-report-2cfa.nsys-rep[1/1] [=====================88%    ] nsys-report-2cfa.nsys-rep[1/1] [=====================89%    ] nsys-report-2cfa.nsys-rep[1/1] [========================100%] nsys-report-2cfa.nsys-rep[1/1] [========================100%] nsys-report-2cfa.nsys-rep[1/1] [========================100%] nsys-report-2cfa.nsys-rep
+Generating '/tmp/nsys-report-e20c.qdstrm'
+[1/1] [0%                          ] ldm.nsys-rep[1/1] [0%                          ] ldm.nsys-rep[1/1] [=16%                        ] ldm.nsys-rep[1/1] [=====29%                    ] ldm.nsys-rep[1/1] [========42%                 ] ldm.nsys-rep[1/1] [============55%             ] ldm.nsys-rep[1/1] [===============67%          ] ldm.nsys-rep[1/1] [==================75%       ] ldm.nsys-rep[1/1] [========================100%] ldm.nsys-rep[1/1] [========================100%] ldm.nsys-rep
 Generated:
-	/tmp/nsys-report-2cfa.nsys-rep
+	/home/rb/AtlasGaussians/profiler/ldm.nsys-rep

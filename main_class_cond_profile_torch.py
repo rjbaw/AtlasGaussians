@@ -221,7 +221,7 @@ def main(args, config_ae):
         with_stack=True,
         on_trace_ready=torch.profiler.tensorboard_trace_handler(f'./log/ldm'),
     ) as prof:
-        for epoch in range(args.start_epoch, args.start_epoch+2):
+        for epoch in range(args.start_epoch, args.start_epoch+3):
             if args.distributed:
                 data_loader_train.sampler.set_epoch(epoch)
             with record_function(f"train_epoch_{epoch}"):

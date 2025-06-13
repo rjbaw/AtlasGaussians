@@ -255,7 +255,7 @@ def main(args, config):
         on_trace_ready=torch.profiler.tensorboard_trace_handler(f'./log/vae'),
 
     ) as prof:
-        for epoch in range(args.start_epoch, args.start_epoch+2):
+        for epoch in range(args.start_epoch, args.start_epoch+3):
             if args.distributed:
                 data_loader_train.sampler.set_epoch(epoch)
             with record_function(f"train_epoch_{epoch}"):

@@ -8,3 +8,5 @@ blender*
 *.pyc
 *.nsys-rep
 *.ncu-rep
+*#*
+*qdstrm
