@@ -1,6 +1,6 @@
 Not using distributed mode
-[19:23:45.135207] job dir: /home/rb/AtlasGaussians
-[19:23:45.135237] Namespace(batch_size=27,
+[23:23:04.331514] job dir: /home/rb/AtlasGaussians
+[23:23:04.331545] Namespace(batch_size=27,
 epochs=1000,
 replica=8,
 accum_iter=1,
@@ -29,35 +29,18 @@ dist_on_itp=False,
 dist_url='env://',
 output_dir='output/ldm/shapenet/car/ckpt',
 distributed=False)
-[19:23:45.148549] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7fb7d93bffb0>
-[19:23:45.178107] Copied README.md to output/ldm/shapenet/car/code/README.md
-[19:23:45.178166] Copied datasets/splits/shapenet/02691156_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_test.txt
-[19:23:45.178214] Copied datasets/splits/shapenet/02691156_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_train.txt
-[19:23:45.178261] Copied engine_ae.py to output/ldm/shapenet/car/code/engine_ae.py
-[19:23:45.178363] Copied engine_class_cond.py to output/ldm/shapenet/car/code/engine_class_cond.py
-[19:23:45.178394] Copied gs.py to output/ldm/shapenet/car/code/gs.py
-[19:23:45.178423] Copied main_ae_profile_nvtx.py to output/ldm/shapenet/car/code/main_ae_profile_nvtx.py
-[19:23:45.178456] Copied main_ae_profile_torch.py to output/ldm/shapenet/car/code/main_ae_profile_torch.py
-[19:23:45.178486] Copied main_class_cond_profile_nvtx.py to output/ldm/shapenet/car/code/main_class_cond_profile_nvtx.py
-[19:23:45.178515] Copied main_class_cond_profile_torch.py to output/ldm/shapenet/car/code/main_class_cond_profile_torch.py
-[19:23:45.178562] Copied models_class_cond.py to output/ldm/shapenet/car/code/models_class_cond.py
-[19:23:45.178594] Copied profiler/profile_nvtx_infer_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_infer_log.txt
-[19:23:45.178618] Copied profiler/profile_nvtx_ldm_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_ldm_log.txt
-[19:23:45.178659] Copied profiler/profile_nvtx_vae_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_vae_log.txt
-[19:23:45.178690] Copied profiler/profile_torch_ldm_log.txt to output/ldm/shapenet/car/code/profiler/profile_torch_ldm_log.txt
-[19:23:45.178715] Copied profiler/profile_torch_vae_log.txt to output/ldm/shapenet/car/code/profiler/profile_torch_vae_log.txt
-[19:23:45.178740] Copied requirements.txt to output/ldm/shapenet/car/code/requirements.txt
-[19:23:45.178768] Copied sample_class_cond_cfg_profile_nvtx.py to output/ldm/shapenet/car/code/sample_class_cond_cfg_profile_nvtx.py
-[19:23:45.178795] Copied sample_class_cond_cfg_profile_torch.py to output/ldm/shapenet/car/code/sample_class_cond_cfg_profile_torch.py
-[19:23:45.178821] Copied scripts/profile_ncu.sh to output/ldm/shapenet/car/code/scripts/profile_ncu.sh
-[19:23:45.178848] Copied scripts/profile_nvtx.sh to output/ldm/shapenet/car/code/scripts/profile_nvtx.sh
-[19:23:45.178874] Copied scripts/profile_torch.sh to output/ldm/shapenet/car/code/scripts/profile_torch.sh
-[19:23:45.178901] Copied scripts/train_shape_chair.sh to output/ldm/shapenet/car/code/scripts/train_shape_chair.sh
-[19:23:45.178939] Copied scripts/train_shape_plane.sh to output/ldm/shapenet/car/code/scripts/train_shape_plane.sh
-[19:23:45.178971] Copied util/emd/emd.cpp to output/ldm/shapenet/car/code/util/emd/emd.cpp
-[19:23:45.179008] Copied util/emd/emd_cuda.cu to output/ldm/shapenet/car/code/util/emd/emd_cuda.cu
-[19:23:46.506003] Loading autoencoder output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth
-[19:23:48.495465] Model = EDMPrecond(
+[23:23:04.348269] Sampler_train = <torch.utils.data.distributed.DistributedSampler object at 0x7f940fa9be90>
+[23:23:04.380824] Copied datasets/splits/shapenet/02691156_test.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_test.txt
+[23:23:04.380924] Copied datasets/splits/shapenet/02691156_train.txt to output/ldm/shapenet/car/code/datasets/splits/shapenet/02691156_train.txt
+[23:23:04.381136] Copied models_class_cond.py to output/ldm/shapenet/car/code/models_class_cond.py
+[23:23:04.381304] Copied profiler/profile_nvtx_infer_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_infer_log.txt
+[23:23:04.381349] Copied profiler/profile_nvtx_ldm_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_ldm_log.txt
+[23:23:04.381421] Copied profiler/profile_nvtx_vae_log.txt to output/ldm/shapenet/car/code/profiler/profile_nvtx_vae_log.txt
+[23:23:04.381568] Copied scripts/train_shape_car.sh to output/ldm/shapenet/car/code/scripts/train_shape_car.sh
+[23:23:04.381624] Copied scripts/train_shape_plane.sh to output/ldm/shapenet/car/code/scripts/train_shape_plane.sh
+[23:23:04.381688] Copied util/emd/emd_cuda.cu to output/ldm/shapenet/car/code/util/emd/emd_cuda.cu
+[23:23:06.041364] Loading autoencoder output/vae/shapenet/vae_car_full/ckpt/checkpoint-999.pth
+[23:23:08.076501] Model = EDMPrecond(
   (model): LatentArrayTransformer(
     (proj_in): Linear(in_features=16, out_features=512, bias=False)
     (transformer_blocks): ModuleList(
@@ -119,35 +102,35 @@ distributed=False)
     (map_layer1): Linear(in_features=512, out_features=512, bias=True)
   )
 )
-[19:23:48.495481] number of params (M): 164.20
-[19:23:48.495487] actual lr: 1.00e-04
-[19:23:48.495489] accumulate grad iterations: 1
-[19:23:48.495491] effective batch size: 27
-[19:23:48.496149] criterion = <models_class_cond_profile_nvtx.EDMLoss object at 0x7fb7cdf06b40>
-[19:23:48.496155] Start training for 1000 epochs
-[19:23:48.497414] log_dir: output/ldm/shapenet/car
-[19:23:49.398883] Epoch: [0]  [0/2]  eta: 0:00:01  lr: 0.000000  loss: 0.9523 (0.9523)  time: 0.8304  data: 0.2120  max mem: 27316
-[19:23:49.824302] Epoch: [0]  [1/2]  eta: 0:00:00  lr: 0.000001  loss: 0.9507 (0.9515)  time: 0.6277  data: 0.1060  max mem: 28539
-[19:23:49.857518] Epoch: [0] Total time: 0:00:01 (0.6447 s / it)
-[19:23:49.857553] Averaged stats: lr: 0.000001  loss: 0.9507 (0.9515)
-[19:23:51.218422] Test:  [0/2]  eta: 0:00:00  loss: 0.9954 (0.9954)  time: 0.1845  data: 0.1649  max mem: 28539
-[19:23:51.229685] Test:  [1/2]  eta: 0:00:00  loss: 0.9954 (0.9969)  time: 0.0978  data: 0.0825  max mem: 28539
-[19:23:51.263601] Test: Total time: 0:00:00 (0.1149 s / it)
-[19:23:51.263635] * loss 0.997
-[19:23:51.263705] loss of the network on the 2 test images: 0.997
-[19:23:51.265869] log_dir: output/ldm/shapenet/car
-[19:23:51.897490] Epoch: [1]  [0/2]  eta: 0:00:01  lr: 0.000002  loss: 0.9495 (0.9495)  time: 0.6279  data: 0.1702  max mem: 28540
-[19:23:52.375628] Epoch: [1]  [1/2]  eta: 0:00:00  lr: 0.000003  loss: 0.9495 (0.9615)  time: 0.5528  data: 0.0851  max mem: 28540
-[19:23:52.409575] Epoch: [1] Total time: 0:00:01 (0.5702 s / it)
-[19:23:52.409602] Averaged stats: lr: 0.000003  loss: 0.9495 (0.9615)
-[19:23:52.412990] log_dir: output/ldm/shapenet/car
-[19:23:53.047978] Epoch: [2]  [0/2]  eta: 0:00:01  lr: 0.000004  loss: 0.9382 (0.9382)  time: 0.6312  data: 0.1724  max mem: 28540
-[19:23:53.526117] Epoch: [2]  [1/2]  eta: 0:00:00  lr: 0.000005  loss: 0.9382 (0.9412)  time: 0.5545  data: 0.0862  max mem: 28540
-[19:23:53.559652] Epoch: [2] Total time: 0:00:01 (0.5717 s / it)
-[19:23:53.559681] Averaged stats: lr: 0.000005  loss: 0.9382 (0.9412)
-[19:23:53.561322] Training time 0:00:05
+[23:23:08.076516] number of params (M): 164.20
+[23:23:08.076521] actual lr: 1.00e-04
+[23:23:08.076523] accumulate grad iterations: 1
+[23:23:08.076524] effective batch size: 27
+[23:23:08.077173] criterion = <models_class_cond_profile_nvtx.EDMLoss object at 0x7f940c2e97c0>
+[23:23:08.077179] Start training for 1000 epochs
+[23:23:08.078415] log_dir: output/ldm/shapenet/car
+[23:23:08.964084] Epoch: [0]  [0/2]  eta: 0:00:01  lr: 0.000000  loss: 0.9755 (0.9755)  time: 0.8092  data: 0.1911  max mem: 27316
+[23:23:09.388895] Epoch: [0]  [1/2]  eta: 0:00:00  lr: 0.000001  loss: 0.9755 (0.9774)  time: 0.6169  data: 0.0956  max mem: 28539
+[23:23:09.423238] Epoch: [0] Total time: 0:00:01 (0.6344 s / it)
+[23:23:09.423268] Averaged stats: lr: 0.000001  loss: 0.9755 (0.9774)
+[23:23:10.737780] Test:  [0/2]  eta: 0:00:00  loss: 1.0002 (1.0002)  time: 0.1697  data: 0.1511  max mem: 28539
+[23:23:10.748970] Test:  [1/2]  eta: 0:00:00  loss: 1.0002 (1.0008)  time: 0.0904  data: 0.0756  max mem: 28539
+[23:23:10.779574] Test: Total time: 0:00:00 (0.1059 s / it)
+[23:23:10.779607] * loss 1.001
+[23:23:10.779671] loss of the network on the 2 test images: 1.001
+[23:23:10.781785] log_dir: output/ldm/shapenet/car
+[23:23:11.395985] Epoch: [1]  [0/2]  eta: 0:00:01  lr: 0.000002  loss: 0.9772 (0.9772)  time: 0.6104  data: 0.1524  max mem: 28540
+[23:23:11.873366] Epoch: [1]  [1/2]  eta: 0:00:00  lr: 0.000003  loss: 0.9772 (0.9837)  time: 0.5438  data: 0.0762  max mem: 28540
+[23:23:11.904382] Epoch: [1] Total time: 0:00:01 (0.5596 s / it)
+[23:23:11.904410] Averaged stats: lr: 0.000003  loss: 0.9772 (0.9837)
+[23:23:11.907600] log_dir: output/ldm/shapenet/car
+[23:23:12.511641] Epoch: [2]  [0/2]  eta: 0:00:01  lr: 0.000004  loss: 0.9762 (0.9762)  time: 0.6002  data: 0.1409  max mem: 28540
+[23:23:12.990288] Epoch: [2]  [1/2]  eta: 0:00:00  lr: 0.000005  loss: 0.9762 (0.9784)  time: 0.5393  data: 0.0705  max mem: 28540
+[23:23:13.022612] Epoch: [2] Total time: 0:00:01 (0.5558 s / it)
+[23:23:13.022639] Averaged stats: lr: 0.000005  loss: 0.9762 (0.9784)
+[23:23:13.024204] Training time 0:00:04
 Collecting data...
-Generating '/tmp/nsys-report-e20c.qdstrm'
-[1/1] [0%                          ] ldm.nsys-rep[1/1] [0%                          ] ldm.nsys-rep[1/1] [=16%                        ] ldm.nsys-rep[1/1] [=====29%                    ] ldm.nsys-rep[1/1] [========42%                 ] ldm.nsys-rep[1/1] [============55%             ] ldm.nsys-rep[1/1] [===============67%          ] ldm.nsys-rep[1/1] [==================75%       ] ldm.nsys-rep[1/1] [========================100%] ldm.nsys-rep[1/1] [========================100%] ldm.nsys-rep
+Generating '/tmp/nsys-report-5d2f.qdstrm'
+[1/1] [0%                          ] ldm.nsys-rep[1/1] [0%                          ] ldm.nsys-rep[1/1] [=16%                        ] ldm.nsys-rep[1/1] [=====29%                    ] ldm.nsys-rep[1/1] [========42%                 ] ldm.nsys-rep[1/1] [============54%             ] ldm.nsys-rep[1/1] [===============67%          ] ldm.nsys-rep[1/1] [==================75%       ] ldm.nsys-rep[1/1] [========================100%] ldm.nsys-rep[1/1] [========================100%] ldm.nsys-rep
 Generated:
 	/home/rb/AtlasGaussians/profiler/ldm.nsys-rep

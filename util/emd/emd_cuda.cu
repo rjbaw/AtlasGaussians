@@ -46,16 +46,6 @@ __device__ __forceinline__ float atomicMax_f32(float *address, float val) {
 #endif
 }
 
-// __device__ __forceinline__ float atomicMax(float *address, float val) {
-//   int ret = __float_as_int(*address);
-//   while (val > __int_as_float(ret)) {
-//     int old = ret;
-//     if ((ret = atomicCAS((int *)address, old, __float_as_int(val))) == old)
-//       break;
-//   }
-//   return __int_as_float(ret);
-// }
-
 __global__ void clear(int b, int *cnt_tmp, int *unass_cnt) {
   for (int i = threadIdx.x; i < b; i += blockDim.x) {
     cnt_tmp[i] = 0;
@@ -132,6 +122,142 @@ __global__ void calc_unass_idx(int b, int n, int *assignment, int *unass_idx,
   }
 }
 
+// template <typename T>
+// __global__ void Bid(int b, int n, const float *__restrict__ xyz1,
+//                     const float *__restrict__ xyz2, float eps, int
+//                     *assignment, int *assignment_inv, T *price, int *bid, T
+//                     *bid_increments, float *max_increments, int *unass_cnt,
+//                     int *unass_cnt_sum, int *unass_idx) {
+//   constexpr int THREADS_PER_UNASS = 128;
+//   constexpr int TILE = 512;
+//   constexpr int WARP = 32;
+
+//   const int lane = threadIdx.x & (WARP - 1);
+//   const int thread_in_unass = threadIdx.x % THREADS_PER_UNASS;
+//   const int group_id = threadIdx.x / THREADS_PER_UNASS;
+//   const int groups_per_blk = blockDim.x / THREADS_PER_UNASS;
+
+//   extern __shared__ float smem[];
+//   float *xyz2_buf = smem;
+//   T *price_buf = reinterpret_cast<T *>(xyz2_buf + 3 * TILE);
+
+//   __shared__ float best_buf[TILE];
+//   __shared__ float better_buf[TILE];
+//   __shared__ int best_i_buf[TILE];
+
+//   for (int i = blockIdx.x; i < b; i += gridDim.x) {
+//     const int _unass_cnt = unass_cnt[i];
+
+//     const int block_cnt = gridDim.y;
+//     const int unass_per_block = (_unass_cnt + block_cnt - 1) / block_cnt;
+//     const int first_unass_idx = blockIdx.y * unass_per_block;
+//     const int unass_rank = first_unass_idx + group_id;
+//     const bool active = (unass_rank < _unass_cnt);
+//     int _unass_id = -1;
+//     float x1 = 0.f, y1 = 0.f, z1 = 0.f;
+//     if (active) {
+//       _unass_id = unass_idx[unass_cnt_sum[i] - _unass_cnt + unass_rank];
+//       const int base1 = (i * n + _unass_id) * 3;
+//       x1 = xyz1[base1 + 0];
+//       y1 = xyz1[base1 + 1];
+//       z1 = xyz1[base1 + 2];
+//     }
+//     float best = -1e9f;
+//     float better = -1e9f;
+//     int best_i = -1;
+
+//     for (int k2 = 0; k2 < n; k2 += TILE) {
+//       const int elems = min(TILE, n - k2);
+
+// #if __CUDA_ARCH__ >= 800
+//       cuda::pipeline<cuda::thread_scope_thread> pipe = cuda::make_pipeline();
+//       pipe.producer_acquire();
+//       cuda::memcpy_async(xyz2_buf, &xyz2[(i * n + k2) * 3],
+//                          sizeof(float) * elems * 3, pipe);
+//       cuda::memcpy_async(price_buf, &price[i * n + k2], sizeof(T) * elems,
+//                          pipe);
+//       pipe.producer_commit();
+//       pipe.consumer_wait();
+// #else
+//       for (int t = threadIdx.x; t < elems * 3; t += blockDim.x)
+//         xyz2_buf[t] = xyz2[(i * n + k2) * 3 + t];
+//       for (int t = threadIdx.x; t < elems; t += blockDim.x)
+//         price_buf[t] = price[i * n + k2 + t];
+//       __syncthreads();
+// #endif
+//       if (active) {
+//         for (int j = thread_in_unass; j < elems; j += THREADS_PER_UNASS) {
+
+//           const int idx3 = j * 3;
+//           const float dx = xyz2_buf[idx3 + 0] - x1;
+//           const float dy = xyz2_buf[idx3 + 1] - y1;
+//           const float dz = xyz2_buf[idx3 + 2] - z1;
+//           const float score = 9.f - (dx * dx + dy * dy + dz * dz) -
+//                               2.f * static_cast<float>(price_buf[j]);
+//           const int g_idx = k2 + j;
+
+//           if (score > best) {
+//             better = best;
+//             best = score;
+//             best_i = g_idx;
+//           } else if (score > better)
+//             better = score;
+//         }
+//       }
+//     }
+
+//     for (int offset = WARP / 2; offset; offset >>= 1) {
+//       const float b_val = __shfl_down_sync(0xffffffff, best, offset);
+//       const float s_val = __shfl_down_sync(0xffffffff, better, offset);
+//       const int b_idx = __shfl_down_sync(0xffffffff, best_i, offset);
+//       if (b_val > best) {
+//         better = fmaxf(best, s_val);
+//         best = b_val;
+//         best_i = b_idx;
+//       } else if (b_val > better) {
+//         better = b_val;
+//       } else if (s_val > better) {
+//         better = s_val;
+//       }
+//     }
+//     if constexpr (THREADS_PER_UNASS > WARP) {
+//       int sm_idx = threadIdx.x / WARP;
+//       if (lane == 0) {
+//         best_buf[sm_idx] = best;
+//         better_buf[sm_idx] = better;
+//         best_i_buf[sm_idx] = best_i;
+//       }
+//       __syncthreads();
+
+//       if (active && lane == 0) {
+//         int base = group_id * (THREADS_PER_UNASS / WARP);
+//         int limit = base + THREADS_PER_UNASS / WARP;
+
+//         best = best_buf[base];
+//         better = better_buf[base];
+//         best_i = best_i_buf[base];
+
+//         for (int t = base + 1; t < limit; ++t) {
+//           float b_val = best_buf[t];
+//           if (b_val > best) {
+//             better = fmaxf(best, better_buf[t]);
+//             best = b_val;
+//             best_i = best_i_buf[t];
+//           } else
+//             better = fmaxf(better, b_val);
+//         }
+//       }
+//     }
+
+//     if (active && lane == 0) {
+//       float inc = best - better + eps;
+//       bid[i * n + _unass_id] = best_i;
+//       bid_increments[i * n + _unass_id] = static_cast<T>(inc);
+//       atomicMax_f32(&max_increments[i * n + best_i], inc);
+//     }
+//   }
+// }
+
 template <typename T>
 __global__ void Bid(int b, int n, const float *__restrict__ xyz1,
                     const float *__restrict__ xyz2, float eps, int *assignment,
@@ -139,20 +265,10 @@ __global__ void Bid(int b, int n, const float *__restrict__ xyz1,
                     float *max_increments, int *unass_cnt, int *unass_cnt_sum,
                     int *unass_idx) {
 
-  // const int TILE = 512;
-  // const int batch = TILE;
-  // const int block_size = 1024;
-  // const int block_cnt = (n + TILE - 1) / TILE;
   const int TILE = 512;
   const int batch = TILE;
   const int block_cnt = gridDim.y;
   constexpr int block_size = 1024;
-
-  // extern __shared__ float smem[];
-  // float *xyz2_buf = smem;
-  // float *price_buf = xyz2_buf + 3 * TILE;
-  // __shared__ float xyz2_buf[batch * 3];
-  // __shared__ float price_buf[batch];
 
   extern __shared__ char smem[];
   float *xyz2_buf = reinterpret_cast<float *>(smem);
@@ -190,14 +306,8 @@ __global__ void Bid(int b, int n, const float *__restrict__ xyz1,
     }
 
     for (int k2 = 0; k2 < n; k2 += batch) {
-      int end_k = min(n, k2 + batch) - k2;
-      // for (int j = threadIdx.x; j < end_k * 3; j += blockDim.x) {
-      //   xyz2_buf[j] = xyz2[(i * n + k2) * 3 + j];
-      // }
-      // for (int j = threadIdx.x; j < end_k; j += blockDim.x) {
-      //   price_buf[j] = price[i * n + k2 + j];
-      // }
 
+      int end_k = min(n, k2 + batch) - k2;
       int idx = threadIdx.x;
       while (idx < end_k * 3) {
         xyz2_buf[idx] = xyz2[(i * n + k2) * 3 + idx];
@@ -210,18 +320,6 @@ __global__ void Bid(int b, int n, const float *__restrict__ xyz1,
       }
       __syncthreads();
 
-      // cuda::pipeline<cuda::thread_scope_thread> pipe =
-      // cuda::make_pipeline(); pipe.producer_acquire();
-      // cuda::memcpy_async(xyz2_buf, &xyz2[(i * n + k2) * 3],
-      //                    sizeof(float) * 3 * TILE,
-      //                    cuda::thread_scope_shared);
-      // cuda::memcpy_async(price_buf, &price[i * n + k2], sizeof(float) *
-      // TILE,
-      //                    cuda::thread_scope_shared);
-      // pipe.producer_commit();
-      // pipe.consumer_wait();
-      // __syncthreads();
-
       if (_unass_id != -1) {
         int delta = (end_k + thread_per_unass - 1) / thread_per_unass;
         int l = thread_in_unass * delta;
@@ -233,7 +331,8 @@ __global__ void Bid(int b, int n, const float *__restrict__ xyz1,
           float y2 = xyz2_buf[k * 3 + 1] - y1;
           float z2 = xyz2_buf[k * 3 + 2] - z1;
           // the coordinates of points should be normalized to [0, 1]
-          // float d = 3.0 - sqrtf(x2 * x2 + y2 * y2 + z2 * z2) - price_buf[k];
+          // float d = 3.0 - sqrtf(x2 * x2 + y2 * y2 + z2 * z2) -
+          price_buf[k];
           float d =
               9.f - (x2 * x2 + y2 * y2 + z2 * z2) - 2.f * TO_FP(price_buf[k]);
 
@@ -367,8 +466,7 @@ int emd_cuda_forward(at::Tensor xyz1, at::Tensor xyz2, at::Tensor dist,
 
     constexpr int TILE = 512;
     size_t shared_bytes = sizeof(float) * 3 * TILE + sizeof(fp_t) * TILE;
-    dim3 grid(batch_size, n / 1024, 1), block(1024);
-    Bid<fp_t><<<grid, block, shared_bytes>>>(
+    Bid<fp_t><<<dim3(batch_size, n / 1024, 1), 1024, shared_bytes>>>(
         batch_size, n, xyz1.data_ptr<float>(), xyz2.data_ptr<float>(), eps,
         assignment.data_ptr<int>(), assignment_inv.data_ptr<int>(),
         price.data_ptr<fp_t>(), bid.data_ptr<int>(),
@@ -376,11 +474,14 @@ int emd_cuda_forward(at::Tensor xyz1, at::Tensor xyz2, at::Tensor dist,
         unass_cnt.data_ptr<int>(), unass_cnt_sum.data_ptr<int>(),
         unass_idx.data_ptr<int>());
 
-    // Bid<<<dim3(batch_size, n / 1024, 1), 1024>>>(
+    // constexpr int TILE = 512;
+    // size_t shared_bytes = sizeof(float) * 3 * TILE + sizeof(fp_t) * TILE;
+    // dim3 grid(batch_size, n / 1024, 1), block(1024);
+    // Bid<fp_t><<<grid, block, shared_bytes>>>(
     //     batch_size, n, xyz1.data_ptr<float>(), xyz2.data_ptr<float>(), eps,
     //     assignment.data_ptr<int>(), assignment_inv.data_ptr<int>(),
-    //     price.data_ptr<float>(), bid.data_ptr<int>(),
-    //     bid_increments.data_ptr<float>(), max_increments.data_ptr<float>(),
+    //     price.data_ptr<fp_t>(), bid.data_ptr<int>(),
+    //     bid_increments.data_ptr<fp_t>(), max_increments.data_ptr<float>(),
     //     unass_cnt.data_ptr<int>(), unass_cnt_sum.data_ptr<int>(),
     //     unass_idx.data_ptr<int>());
 

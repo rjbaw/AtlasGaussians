@@ -1,6 +1,6 @@
 Not using distributed mode
-[19:23:27.645455] job dir: /home/rb/AtlasGaussians
-[19:23:27.645474] Namespace(config_path='config/shapenet/train_car_full.yaml',
+[23:22:46.573106] job dir: /home/rb/AtlasGaussians
+[23:22:46.573128] Namespace(config_path='config/shapenet/train_car_full.yaml',
 log_dir='output/vae/shapenet/vae_car_full',
 resume='output/vae/shapenet/vae_car_full/ckpt/checkpoint-199_model_only.pth',
 start_epoch=0,
@@ -13,35 +13,18 @@ world_size=1,
 local_rank=-1,
 dist_url='env://',
 output_dir='output/vae/shapenet/vae_car_full/ckpt')
-[19:23:27.681225] ['02958343']
-[19:23:27.681422] ['02958343']
-[19:23:27.711762] Copied README.md to output/vae/shapenet/vae_car_full/code/README.md
-[19:23:27.711821] Copied datasets/splits/shapenet/02691156_test.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02691156_test.txt
-[19:23:27.711868] Copied datasets/splits/shapenet/02691156_train.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02691156_train.txt
-[19:23:27.711915] Copied engine_ae.py to output/vae/shapenet/vae_car_full/code/engine_ae.py
-[19:23:27.711950] Copied engine_class_cond.py to output/vae/shapenet/vae_car_full/code/engine_class_cond.py
-[19:23:27.711980] Copied gs.py to output/vae/shapenet/vae_car_full/code/gs.py
-[19:23:27.712011] Copied main_ae_profile_nvtx.py to output/vae/shapenet/vae_car_full/code/main_ae_profile_nvtx.py
-[19:23:27.712056] Copied main_ae_profile_torch.py to output/vae/shapenet/vae_car_full/code/main_ae_profile_torch.py
-[19:23:27.712085] Copied main_class_cond_profile_nvtx.py to output/vae/shapenet/vae_car_full/code/main_class_cond_profile_nvtx.py
-[19:23:27.712116] Copied main_class_cond_profile_torch.py to output/vae/shapenet/vae_car_full/code/main_class_cond_profile_torch.py
-[19:23:27.712220] Copied models_class_cond.py to output/vae/shapenet/vae_car_full/code/models_class_cond.py
-[19:23:27.712250] Copied profiler/profile_nvtx_infer_log.txt to output/vae/shapenet/vae_car_full/code/profiler/profile_nvtx_infer_log.txt
-[19:23:27.712279] Copied profiler/profile_nvtx_ldm_log.txt to output/vae/shapenet/vae_car_full/code/profiler/profile_nvtx_ldm_log.txt
-[19:23:27.712303] Copied profiler/profile_nvtx_vae_log.txt to output/vae/shapenet/vae_car_full/code/profiler/profile_nvtx_vae_log.txt
-[19:23:27.712335] Copied profiler/profile_torch_ldm_log.txt to output/vae/shapenet/vae_car_full/code/profiler/profile_torch_ldm_log.txt
-[19:23:27.712361] Copied profiler/profile_torch_vae_log.txt to output/vae/shapenet/vae_car_full/code/profiler/profile_torch_vae_log.txt
-[19:23:27.712386] Copied requirements.txt to output/vae/shapenet/vae_car_full/code/requirements.txt
-[19:23:27.712413] Copied sample_class_cond_cfg_profile_nvtx.py to output/vae/shapenet/vae_car_full/code/sample_class_cond_cfg_profile_nvtx.py
-[19:23:27.712440] Copied sample_class_cond_cfg_profile_torch.py to output/vae/shapenet/vae_car_full/code/sample_class_cond_cfg_profile_torch.py
-[19:23:27.712467] Copied scripts/profile_ncu.sh to output/vae/shapenet/vae_car_full/code/scripts/profile_ncu.sh
-[19:23:27.712493] Copied scripts/profile_nvtx.sh to output/vae/shapenet/vae_car_full/code/scripts/profile_nvtx.sh
-[19:23:27.712519] Copied scripts/profile_torch.sh to output/vae/shapenet/vae_car_full/code/scripts/profile_torch.sh
-[19:23:27.712545] Copied scripts/train_shape_chair.sh to output/vae/shapenet/vae_car_full/code/scripts/train_shape_chair.sh
-[19:23:27.712571] Copied scripts/train_shape_plane.sh to output/vae/shapenet/vae_car_full/code/scripts/train_shape_plane.sh
-[19:23:27.712599] Copied util/emd/emd.cpp to output/vae/shapenet/vae_car_full/code/util/emd/emd.cpp
-[19:23:27.712630] Copied util/emd/emd_cuda.cu to output/vae/shapenet/vae_car_full/code/util/emd/emd_cuda.cu
-[19:23:29.806313] Model = KLAutoEncoder(
+[23:22:46.609550] ['02958343']
+[23:22:46.609633] ['02958343']
+[23:22:46.639427] Copied datasets/splits/shapenet/02691156_test.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02691156_test.txt
+[23:22:46.639516] Copied datasets/splits/shapenet/02691156_train.txt to output/vae/shapenet/vae_car_full/code/datasets/splits/shapenet/02691156_train.txt
+[23:22:46.639600] Copied models_class_cond.py to output/vae/shapenet/vae_car_full/code/models_class_cond.py
+[23:22:46.639668] Copied profiler/profile_nvtx_infer_log.txt to output/vae/shapenet/vae_car_full/code/profiler/profile_nvtx_infer_log.txt
+[23:22:46.639724] Copied profiler/profile_nvtx_ldm_log.txt to output/vae/shapenet/vae_car_full/code/profiler/profile_nvtx_ldm_log.txt
+[23:22:46.639753] Copied profiler/profile_nvtx_vae_log.txt to output/vae/shapenet/vae_car_full/code/profiler/profile_nvtx_vae_log.txt
+[23:22:46.639787] Copied scripts/train_shape_car.sh to output/vae/shapenet/vae_car_full/code/scripts/train_shape_car.sh
+[23:22:46.639814] Copied scripts/train_shape_plane.sh to output/vae/shapenet/vae_car_full/code/scripts/train_shape_plane.sh
+[23:22:46.639859] Copied util/emd/emd_cuda.cu to output/vae/shapenet/vae_car_full/code/util/emd/emd_cuda.cu
+[23:22:48.594095] Model = KLAutoEncoder(
   (img_encoder): LEAP_Encoder(
     (backbone): DinoVisionTransformer(
       (patch_embed): PatchEmbed(
@@ -551,33 +534,33 @@ output_dir='output/vae/shapenet/vae_car_full/ckpt')
     )
   )
 )
-[19:23:29.806355] number of params (M): 141.69
-[19:23:29.806431] actual lr: 1.00e-04
-[19:23:29.806440] accumulate grad iterations: 1
-[19:23:29.806442] effective batch size: 4
-[19:23:29.807578] criterion = BCEWithLogitsLoss()
-[19:23:30.198238] Resume checkpoint output/vae/shapenet/vae_car_full/ckpt/checkpoint-199_model_only.pth
-[19:23:30.198692] Start training for 1000 epochs
-[19:23:30.200240] log_dir: output/vae/shapenet/vae_car_full
-[19:23:33.522963] Epoch: [0]  [0/2]  eta: 0:00:06  lr: 0.000000  loss_kl: 0.5125 (0.5125)  loss_lp0: 0.0007 (0.0007)  loss_lp1: 0.0006 (0.0006)  loss_lp2: 0.0004 (0.0004)  loss_lp_render: 0.0004 (0.0004)  loss_lp_emd0: 0.3546 (0.3546)  loss_lp_emd2: 0.3512 (0.3512)  loss_lp_emd_render: 0.3492 (0.3492)  loss_render_rgb: 0.0077 (0.0077)  loss_render_depth: 0.1068 (0.1068)  loss_render_mask: 0.1144 (0.1144)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2180 (0.2180)  loss: 1.5039 (1.5039)  psnr: 21.1824 (21.1824)  time: 3.2992  data: 0.9755  max mem: 17339
-[19:23:33.807235] Epoch: [0]  [1/2]  eta: 0:00:01  lr: 0.000001  loss_kl: 0.3862 (0.4493)  loss_lp0: 0.0007 (0.0007)  loss_lp1: 0.0006 (0.0006)  loss_lp2: 0.0004 (0.0004)  loss_lp_render: 0.0004 (0.0004)  loss_lp_emd0: 0.3546 (0.3562)  loss_lp_emd2: 0.3512 (0.3563)  loss_lp_emd_render: 0.3492 (0.3541)  loss_render_rgb: 0.0072 (0.0075)  loss_render_depth: 0.1019 (0.1043)  loss_render_mask: 0.1092 (0.1118)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2110 (0.2145)  loss: 1.5039 (1.5067)  psnr: 21.1824 (21.3002)  time: 1.7915  data: 0.4885  max mem: 17339
-[19:23:33.865143] Epoch: [0] Total time: 0:00:03 (1.8324 s / it)
-[19:23:33.868950] Averaged stats: lr: 0.000001  loss_kl: 0.3862 (0.4493)  loss_lp0: 0.0007 (0.0007)  loss_lp1: 0.0006 (0.0006)  loss_lp2: 0.0004 (0.0004)  loss_lp_render: 0.0004 (0.0004)  loss_lp_emd0: 0.3546 (0.3562)  loss_lp_emd2: 0.3512 (0.3563)  loss_lp_emd_render: 0.3492 (0.3541)  loss_render_rgb: 0.0072 (0.0075)  loss_render_depth: 0.1019 (0.1043)  loss_render_mask: 0.1092 (0.1118)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2110 (0.2145)  loss: 1.5039 (1.5067)  psnr: 21.1824 (21.3002)
-[19:23:37.003725] Test:  [0/1]  eta: 0:00:02  loss_kl: 0.3774 (0.3774)  loss_lp0: 0.0011 (0.0011)  loss_lp1: 0.0012 (0.0012)  loss_lp2: 0.0010 (0.0010)  loss_lp_render: 0.0010 (0.0010)  loss_lp_emd0: 0.3372 (0.3372)  loss_lp_emd2: 0.3454 (0.3454)  loss_lp_emd_render: 0.3443 (0.3443)  loss_render_rgb: 0.0074 (0.0074)  loss_render_depth: 0.1055 (0.1055)  loss_render_mask: 0.1125 (0.1125)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2210 (0.2210)  loss: 1.4776 (1.4776)  psnr: 21.2956 (21.2956)  time: 2.0124  data: 1.2541  max mem: 17339
-[19:23:37.096547] Test: Total time: 0:00:02 (2.1056 s / it)
-[19:23:37.157714] log_dir: output/vae/shapenet/vae_car_full
-[19:23:38.806361] Epoch: [1]  [0/2]  eta: 0:00:03  lr: 0.000002  loss_kl: 0.5090 (0.5090)  loss_lp0: 0.0007 (0.0007)  loss_lp1: 0.0006 (0.0006)  loss_lp2: 0.0004 (0.0004)  loss_lp_render: 0.0004 (0.0004)  loss_lp_emd0: 0.3438 (0.3438)  loss_lp_emd2: 0.3533 (0.3533)  loss_lp_emd_render: 0.3561 (0.3561)  loss_render_rgb: 0.0074 (0.0074)  loss_render_depth: 0.1044 (0.1044)  loss_render_mask: 0.1116 (0.1116)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2122 (0.2122)  loss: 1.4910 (1.4910)  psnr: 21.3703 (21.3703)  time: 1.6480  data: 1.3623  max mem: 17339
-[19:23:39.084939] Epoch: [1]  [1/2]  eta: 0:00:00  lr: 0.000003  loss_kl: 0.4094 (0.4592)  loss_lp0: 0.0007 (0.0007)  loss_lp1: 0.0006 (0.0006)  loss_lp2: 0.0004 (0.0004)  loss_lp_render: 0.0004 (0.0004)  loss_lp_emd0: 0.3438 (0.3473)  loss_lp_emd2: 0.3533 (0.3550)  loss_lp_emd_render: 0.3553 (0.3557)  loss_render_rgb: 0.0074 (0.0074)  loss_render_depth: 0.1044 (0.1074)  loss_render_mask: 0.1116 (0.1153)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2122 (0.2138)  loss: 1.4910 (1.5040)  psnr: 21.2961 (21.3332)  time: 0.9631  data: 0.6812  max mem: 17339
-[19:23:39.172837] Epoch: [1] Total time: 0:00:02 (1.0075 s / it)
-[19:23:39.177442] Averaged stats: lr: 0.000003  loss_kl: 0.4094 (0.4592)  loss_lp0: 0.0007 (0.0007)  loss_lp1: 0.0006 (0.0006)  loss_lp2: 0.0004 (0.0004)  loss_lp_render: 0.0004 (0.0004)  loss_lp_emd0: 0.3438 (0.3473)  loss_lp_emd2: 0.3533 (0.3550)  loss_lp_emd_render: 0.3553 (0.3557)  loss_render_rgb: 0.0074 (0.0074)  loss_render_depth: 0.1044 (0.1074)  loss_render_mask: 0.1116 (0.1153)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2122 (0.2138)  loss: 1.4910 (1.5040)  psnr: 21.2961 (21.3332)
-[19:23:39.180662] log_dir: output/vae/shapenet/vae_car_full
-[19:23:40.875682] Epoch: [2]  [0/2]  eta: 0:00:03  lr: 0.000004  loss_kl: 0.4189 (0.4189)  loss_lp0: 0.0008 (0.0008)  loss_lp1: 0.0007 (0.0007)  loss_lp2: 0.0005 (0.0005)  loss_lp_render: 0.0005 (0.0005)  loss_lp_emd0: 0.3809 (0.3809)  loss_lp_emd2: 0.3626 (0.3626)  loss_lp_emd_render: 0.3604 (0.3604)  loss_render_rgb: 0.0076 (0.0076)  loss_render_depth: 0.1004 (0.1004)  loss_render_mask: 0.1069 (0.1069)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2054 (0.2054)  loss: 1.5267 (1.5267)  psnr: 21.2159 (21.2159)  time: 1.6945  data: 1.4142  max mem: 17339
-[19:23:41.153769] Epoch: [2]  [1/2]  eta: 0:00:00  lr: 0.000005  loss_kl: 0.4189 (0.4722)  loss_lp0: 0.0008 (0.0008)  loss_lp1: 0.0007 (0.0008)  loss_lp2: 0.0005 (0.0006)  loss_lp_render: 0.0005 (0.0006)  loss_lp_emd0: 0.3422 (0.3616)  loss_lp_emd2: 0.3359 (0.3493)  loss_lp_emd_render: 0.3278 (0.3441)  loss_render_rgb: 0.0071 (0.0074)  loss_render_depth: 0.1004 (0.1053)  loss_render_mask: 0.1069 (0.1121)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2054 (0.2094)  loss: 1.4572 (1.4919)  psnr: 21.2159 (21.3536)  time: 0.9860  data: 0.7076  max mem: 17339
-[19:23:41.252740] Epoch: [2] Total time: 0:00:02 (1.0360 s / it)
-[19:23:41.257449] Averaged stats: lr: 0.000005  loss_kl: 0.4189 (0.4722)  loss_lp0: 0.0008 (0.0008)  loss_lp1: 0.0007 (0.0008)  loss_lp2: 0.0005 (0.0006)  loss_lp_render: 0.0005 (0.0006)  loss_lp_emd0: 0.3422 (0.3616)  loss_lp_emd2: 0.3359 (0.3493)  loss_lp_emd_render: 0.3278 (0.3441)  loss_render_rgb: 0.0071 (0.0074)  loss_render_depth: 0.1004 (0.1053)  loss_render_mask: 0.1069 (0.1121)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2054 (0.2094)  loss: 1.4572 (1.4919)  psnr: 21.2159 (21.3536)
-[19:23:41.259472] Training time 0:00:11
+[23:22:48.594124] number of params (M): 141.69
+[23:22:48.594193] actual lr: 1.00e-04
+[23:22:48.594204] accumulate grad iterations: 1
+[23:22:48.594205] effective batch size: 4
+[23:22:48.595278] criterion = BCEWithLogitsLoss()
+[23:22:48.743856] Resume checkpoint output/vae/shapenet/vae_car_full/ckpt/checkpoint-199_model_only.pth
+[23:22:48.744261] Start training for 1000 epochs
+[23:22:48.745546] log_dir: output/vae/shapenet/vae_car_full
+[23:22:52.144960] Epoch: [0]  [0/2]  eta: 0:00:06  lr: 0.000000  loss_kl: 0.1871 (0.1871)  loss_lp0: 0.0021 (0.0021)  loss_lp1: 0.0019 (0.0019)  loss_lp2: 0.0017 (0.0017)  loss_lp_render: 0.0017 (0.0017)  loss_lp_emd0: 0.0149 (0.0149)  loss_lp_emd2: 0.0097 (0.0097)  loss_lp_emd_render: 0.0091 (0.0091)  loss_render_rgb: 0.0090 (0.0090)  loss_render_depth: 0.2045 (0.2045)  loss_render_mask: 0.2057 (0.2057)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2469 (0.2469)  loss: 0.7072 (0.7072)  psnr: 20.7190 (20.7190)  time: 3.3897  data: 1.1061  max mem: 17342
+[23:22:52.466098] Epoch: [0]  [1/2]  eta: 0:00:01  lr: 0.000001  loss_kl: 0.1871 (0.1916)  loss_lp0: 0.0021 (0.0022)  loss_lp1: 0.0019 (0.0019)  loss_lp2: 0.0017 (0.0018)  loss_lp_render: 0.0017 (0.0018)  loss_lp_emd0: 0.0149 (0.0154)  loss_lp_emd2: 0.0097 (0.0105)  loss_lp_emd_render: 0.0091 (0.0103)  loss_render_rgb: 0.0083 (0.0086)  loss_render_depth: 0.2045 (0.2079)  loss_render_mask: 0.2057 (0.2091)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2417 (0.2443)  loss: 0.7072 (0.7140)  psnr: 20.7190 (20.8377)  time: 1.8551  data: 0.5539  max mem: 17342
+[23:22:52.503025] Epoch: [0] Total time: 0:00:03 (1.8787 s / it)
+[23:22:52.506482] Averaged stats: lr: 0.000001  loss_kl: 0.1871 (0.1916)  loss_lp0: 0.0021 (0.0022)  loss_lp1: 0.0019 (0.0019)  loss_lp2: 0.0017 (0.0018)  loss_lp_render: 0.0017 (0.0018)  loss_lp_emd0: 0.0149 (0.0154)  loss_lp_emd2: 0.0097 (0.0105)  loss_lp_emd_render: 0.0091 (0.0103)  loss_render_rgb: 0.0083 (0.0086)  loss_render_depth: 0.2045 (0.2079)  loss_render_mask: 0.2057 (0.2091)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2417 (0.2443)  loss: 0.7072 (0.7140)  psnr: 20.7190 (20.8377)
+[23:22:56.104381] Test:  [0/1]  eta: 0:00:02  loss_kl: 0.1849 (0.1849)  loss_lp0: 0.0021 (0.0021)  loss_lp1: 0.0019 (0.0019)  loss_lp2: 0.0018 (0.0018)  loss_lp_render: 0.0018 (0.0018)  loss_lp_emd0: 0.0161 (0.0161)  loss_lp_emd2: 0.0117 (0.0117)  loss_lp_emd_render: 0.0123 (0.0123)  loss_render_rgb: 0.0071 (0.0071)  loss_render_depth: 0.1843 (0.1843)  loss_render_mask: 0.1857 (0.1857)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2277 (0.2277)  loss: 0.6524 (0.6524)  psnr: 21.6193 (21.6193)  time: 2.4088  data: 1.6300  max mem: 17342
+[23:22:56.173156] Test: Total time: 0:00:02 (2.4780 s / it)
+[23:22:56.210031] log_dir: output/vae/shapenet/vae_car_full
+[23:22:57.984298] Epoch: [1]  [0/2]  eta: 0:00:03  lr: 0.000002  loss_kl: 0.1839 (0.1839)  loss_lp0: 0.0022 (0.0022)  loss_lp1: 0.0019 (0.0019)  loss_lp2: 0.0018 (0.0018)  loss_lp_render: 0.0018 (0.0018)  loss_lp_emd0: 0.0148 (0.0148)  loss_lp_emd2: 0.0099 (0.0099)  loss_lp_emd_render: 0.0097 (0.0097)  loss_render_rgb: 0.0082 (0.0082)  loss_render_depth: 0.1963 (0.1963)  loss_render_mask: 0.1975 (0.1975)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2382 (0.2382)  loss: 0.6822 (0.6822)  psnr: 21.1109 (21.1109)  time: 1.7737  data: 1.4482  max mem: 17342
+[23:22:58.301608] Epoch: [1]  [1/2]  eta: 0:00:01  lr: 0.000003  loss_kl: 0.1839 (0.1866)  loss_lp0: 0.0022 (0.0022)  loss_lp1: 0.0019 (0.0020)  loss_lp2: 0.0018 (0.0018)  loss_lp_render: 0.0018 (0.0018)  loss_lp_emd0: 0.0148 (0.0155)  loss_lp_emd2: 0.0099 (0.0106)  loss_lp_emd_render: 0.0097 (0.0105)  loss_render_rgb: 0.0082 (0.0085)  loss_render_depth: 0.1963 (0.2056)  loss_render_mask: 0.1975 (0.2066)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2382 (0.2405)  loss: 0.6822 (0.7056)  psnr: 20.8305 (20.9707)  time: 1.0453  data: 0.7241  max mem: 17342
+[23:22:58.379703] Epoch: [1] Total time: 0:00:02 (1.0848 s / it)
+[23:22:58.385036] Averaged stats: lr: 0.000003  loss_kl: 0.1839 (0.1866)  loss_lp0: 0.0022 (0.0022)  loss_lp1: 0.0019 (0.0020)  loss_lp2: 0.0018 (0.0018)  loss_lp_render: 0.0018 (0.0018)  loss_lp_emd0: 0.0148 (0.0155)  loss_lp_emd2: 0.0099 (0.0106)  loss_lp_emd_render: 0.0097 (0.0105)  loss_render_rgb: 0.0082 (0.0085)  loss_render_depth: 0.1963 (0.2056)  loss_render_mask: 0.1975 (0.2066)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2382 (0.2405)  loss: 0.6822 (0.7056)  psnr: 20.8305 (20.9707)
+[23:22:58.388405] log_dir: output/vae/shapenet/vae_car_full
+[23:23:00.238742] Epoch: [2]  [0/2]  eta: 0:00:03  lr: 0.000004  loss_kl: 0.1859 (0.1859)  loss_lp0: 0.0023 (0.0023)  loss_lp1: 0.0020 (0.0020)  loss_lp2: 0.0019 (0.0019)  loss_lp_render: 0.0019 (0.0019)  loss_lp_emd0: 0.0147 (0.0147)  loss_lp_emd2: 0.0116 (0.0116)  loss_lp_emd_render: 0.0111 (0.0111)  loss_render_rgb: 0.0093 (0.0093)  loss_render_depth: 0.2132 (0.2132)  loss_render_mask: 0.2144 (0.2144)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2430 (0.2430)  loss: 0.7253 (0.7253)  psnr: 20.5562 (20.5562)  time: 1.8497  data: 1.5319  max mem: 17342
+[23:23:00.594925] Epoch: [2]  [1/2]  eta: 0:00:01  lr: 0.000005  loss_kl: 0.1786 (0.1823)  loss_lp0: 0.0022 (0.0022)  loss_lp1: 0.0020 (0.0020)  loss_lp2: 0.0018 (0.0018)  loss_lp_render: 0.0018 (0.0018)  loss_lp_emd0: 0.0147 (0.0152)  loss_lp_emd2: 0.0106 (0.0111)  loss_lp_emd_render: 0.0107 (0.0109)  loss_render_rgb: 0.0073 (0.0083)  loss_render_depth: 0.1937 (0.2035)  loss_render_mask: 0.1949 (0.2046)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2308 (0.2369)  loss: 0.6714 (0.6983)  psnr: 20.5562 (21.0435)  time: 1.1027  data: 0.7865  max mem: 17342
+[23:23:00.675650] Epoch: [2] Total time: 0:00:02 (1.1436 s / it)
+[23:23:00.680897] Averaged stats: lr: 0.000005  loss_kl: 0.1786 (0.1823)  loss_lp0: 0.0022 (0.0022)  loss_lp1: 0.0020 (0.0020)  loss_lp2: 0.0018 (0.0018)  loss_lp_render: 0.0018 (0.0018)  loss_lp_emd0: 0.0147 (0.0152)  loss_lp_emd2: 0.0106 (0.0111)  loss_lp_emd_render: 0.0107 (0.0109)  loss_render_rgb: 0.0073 (0.0083)  loss_render_depth: 0.1937 (0.2035)  loss_render_mask: 0.1949 (0.2046)  loss_scale_std: 0.0000 (0.0000)  loss_expand: 0.0003 (0.0003)  loss_lpips: 0.2308 (0.2369)  loss: 0.6714 (0.6983)  psnr: 20.5562 (21.0435)
+[23:23:00.683032] Training time 0:00:11
 Collecting data...
-Generating '/tmp/nsys-report-4ff9.qdstrm'
-[1/1] [0%                          ] vae.nsys-rep[1/1] [0%                          ] vae.nsys-rep[1/1] [14%                         ] vae.nsys-rep[1/1] [12%                         ] vae.nsys-rep[1/1] [11%                         ] vae.nsys-rep[1/1] [==19%                       ] vae.nsys-rep[1/1] [====28%                     ] vae.nsys-rep[1/1] [=======36%                  ] vae.nsys-rep[1/1] [=========45%                ] vae.nsys-rep[1/1] [===========53%              ] vae.nsys-rep[1/1] [==============61%           ] vae.nsys-rep[1/1] [================70%         ] vae.nsys-rep[1/1] [==================77%       ] vae.nsys-rep[1/1] [========================100%] vae.nsys-rep[1/1] [========================100%] vae.nsys-rep
+Generating '/tmp/nsys-report-854c.qdstrm'
+[1/1] [0%                          ] vae.nsys-rep[1/1] [0%                          ] vae.nsys-rep[1/1] [11%                         ] vae.nsys-rep[1/1] [==19%                       ] vae.nsys-rep[1/1] [====27%                     ] vae.nsys-rep[1/1] [=======36%                  ] vae.nsys-rep[1/1] [=========44%                ] vae.nsys-rep[1/1] [===========53%              ] vae.nsys-rep[1/1] [==============61%           ] vae.nsys-rep[1/1] [================70%         ] vae.nsys-rep[1/1] [==================76%       ] vae.nsys-rep[1/1] [==================77%       ] vae.nsys-rep[1/1] [========================100%] vae.nsys-rep[1/1] [========================100%] vae.nsys-rep
 Generated:
 	/home/rb/AtlasGaussians/profiler/vae.nsys-rep

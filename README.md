@@ -3,29 +3,57 @@
 Code for ICLR 2025 paper: [Atlas Gaussians Diffusion for 3D Generation](https://yanghtr.github.io/projects/atlas_gaussians/) 
 
 
+## Profiling Results
+
+https://www.dropbox.com/scl/fo/tkknepp6bv852ginismki/AMQN1_VBzDt4t6SAfsEAlt4?rlkey=m0w4ycteypv28mwna3bsnk5ay&st=yefhx7b8&dl=0
+
+
 ## Environment
 
 ```
 bash scripts/env_setup.sh
 
 ```
+## Dataset
 
-## Reproducing Results
+### ShapeNetCorev2
 
-Download the checkpoint from [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/output). 
-Place them according to original path.
-To reproduce the results of Figure 6 in the paper:
+#### Preparation
+Download [ShapenetCorev2](https://shapenet.org)(*.obj) or from kaggle (*.ply). 
+Place them under `util/shapenet_renderer/data/`or any other path. The repo uses *.ply.
 
 ```
-bash scripts/render_paper.sh
+cd util/shapenet_renderer/
+bash render_car.sh
+bash render_plane.sh
+bash render_chair.sh
+```
+Move the renders accordingly to `data_root` paths (default = `./data/render_view200_r1.2/${class_id}`) as specified inside the config files inside `config/` directory.  
+  
+#### Training
+```
+bash scripts/train_shape_car.sh
+bash scripts/train_shape_chair.sh
+bash scripts/train_shape_plane.sh
 ```
 
+#### Inference
 
-## Training
+```
+bash scripts/render_shape_car.sh
+bash scripts/render_shape_chair.sh
+bash scripts/render_shape_plane.sh
+```
 
-### Dataset
+#### Evaluation
 
-#### Objaverse
+```
+cd evaluations/fid_scores/
+bash kid_${class_name}.sh
+bash fid_${class_name}.sh
+```
+
+### Objaverse
 Download the [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse).
 
 ```
@@ -40,30 +68,21 @@ Unzip the file and put it under the `data_root` (default at `data/objaverse/`).
 For more details of the dataset, please refer to Section A.1 in the appendix of the paper. Please also cite [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse) if you use the point clouds.
 
 
-#### ShapeNetCorev2
-Download [ShapenetCorev2](https://shapenet.org). Place them under `util/shapenet_renderer/data/` or any other path.
-
-```
-cd util/shapenet_renderer/
-bash render_car.sh
-bash render_plane.sh
-bash render_chair.sh
-```
-Move the renders accordingly to paths specified inside the configuration files inside the `config/` directory.
-
-
-### VAE training
+##### VAE training
 The VAE training consists of two stages. For the detailed commands, see [VAE Training Script](./scripts/vae/train_dgx.sh). Note that after training, we pre-compute the latents for latent diffusion.
 
 ```
 bash scripts/vae/train_dgx.sh
 ```
 
-### LDM training
+##### LDM training
 
 ```
 bash scripts/ldm/train_dgx.sh
 ```
+
+
+
 
 ## Acknowledgements
 
@@ -76,11 +95,12 @@ The repo is built based on:
 - [DiffTF](https://github.com/ziangcao0312/DiffTF/) (for ShapeNet dataset)
 
 
-## Others
+## Reproducing figures from the paper
 
+Download the checkpoint from [this link](https://huggingface.co/yanghtr/AtlasGaussians/tree/main/output). 
+Place them according to original path.
+To reproduce the results of Figure 6 in the paper:
 
-- If you encounter errors related to CUDA, consider setting `cudnn.enabled = False` (line 80 in `main_ae.py`).
-
-- We find that cleaning the dataset is quite important for training. For more details, see Section A.1 in the appendix of the paper.
-
-- Our models are trained on three general c
+```
+bash scripts/render_paper.sh
+```

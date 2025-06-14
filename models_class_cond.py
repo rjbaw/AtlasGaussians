@@ -65,23 +65,11 @@ class CrossAttention(nn.Module):
         k = self.to_k(context)
         v = self.to_v(context)
 
-        q, k, v = map(lambda t: rearrange(
-            t, 'b n (h d) -> (b h) n d', h=h), (q, k, v))
-
-        sim = torch.einsum('b i d, b j d -> b i j', q, k) * self.scale
-
-        # attention, what we cannot get enough of
-        attn = sim.softmax(dim=-1)
-
-        out = torch.einsum('b i j, b j d -> b i d', attn, v)
+        q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> (b h) n d', h=h),
+                    (q, k, v))
+        out = xops.memory_efficient_attention(q, k, v)
         out = rearrange(out, '(b h) n d -> b n (h d)', h=h)
         return self.to_out(out)
-
-        # q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> (b h) n d', h=h),
-        #             (q, k, v))
-        # out = xops.memory_efficient_attention(q, k, v)
-        # out = rearrange(out, '(b h) n d -> b n (h d)', h=h)
-        # return self.to_out(out)
 
 
 class LayerScale(nn.Module):

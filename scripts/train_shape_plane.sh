@@ -2,9 +2,16 @@
 
 set -euo pipefail
 
+format_time() {
+	local T=$1
+	printf '%02dh:%02dm:%02ds' $((T / 3600)) $(((T % 3600) / 60)) $((T % 60))
+}
+
 ##########################
 # Stage 1: Base VAE Training
 ##########################
+
+vae_start_ts=$(date +%s)
 
 log_dir="output/vae/shapenet/vae_plane"
 config_path="config/shapenet/train_plane_base.yaml"
@@ -73,9 +80,14 @@ python main_ae.py \
   --start_epoch ${epoch} \
   --infer
 
+vae_end_ts=$(date +%s)
+vae_elapsed=$((vae_end_ts - vae_start_ts))
+
 ##########################
 # Stage 3: Diffusion (Class‐Conditional) Training
 ##########################
+
+ldm_start_ts=$(date +%s)
 
 mkdir -p "${dm_log_dir}"
 
@@ -95,4 +107,11 @@ python main_class_cond.py \
   --lr 1e-4 \
   --latent_dir "${full_log_dir}/inference/latents/epoch_${epoch}"
 
+ldm_end_ts=$(date +%s)
+ldm_elapsed=$((ldm_end_ts - ldm_start_ts))
+
 echo ">>> All done!"
+echo
+echo "==== Timing Summary ===="
+echo "VAE (training + resume + inference): $(format_time ${vae_elapsed})"
+echo "LDM (diffusion training):         $(format_time ${ldm_elapsed})"
