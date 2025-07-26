@@ -16,9 +16,7 @@ mode=test
 output_dir=${output_path}/${obj_id}_view${view}_r${radius}
 mkdir -p ${output_dir}
 
-#find ${dataset_path}* -name *.obj -print0 | xargs -0 -n1 -P1 -I {} ${blender_path}/blender --background --python shapenet_spherical_renderer.py -- --output_dir ${output_path}/${obj_id}_view${view}_r${radius} --mesh_fpath {} --num_observations ${view} --sphere_radius ${radius} --mode=${mode}
-
-find "${dataset_path}"* -name '*.ply' -print0 \
+find "${dataset_path}"* -name '*.obj' -print0 \
   | xargs -0 -P1 -I {} "${blender_path}/blender" \
       --background \
       --python shapenet_spherical_renderer.py -- \

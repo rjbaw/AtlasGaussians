@@ -1,7 +1,8 @@
 # AtlasGaussians
 
-Code for ICLR 2025 paper: [Atlas Gaussians Diffusion for 3D Generation](https://yanghtr.github.io/projects/atlas_gaussians/) 
+I have tried reproducing the results on ShapeNetCorev2. I have made improvements to the code and did some GPU profiling.    
 
+Code for ICLR 2025 paper: [Atlas Gaussians Diffusion for 3D Generation](https://yanghtr.github.io/projects/atlas_gaussians/).
 
 ## Profiling Results
 
@@ -11,53 +12,54 @@ https://www.dropbox.com/scl/fo/tkknepp6bv852ginismki/AMQN1_VBzDt4t6SAfsEAlt4?rlk
 ## Environment
 
 ```
-bash scripts/env_setup.sh
-
+conda env create -f env.yml
+conda activate atlas
 ```
 ## Dataset
 
 ### ShapeNetCorev2
 
 #### Preparation
-Download [ShapenetCorev2](https://shapenet.org)(*.obj) or from kaggle (*.ply). 
-Place them under `util/shapenet_renderer/data/`or any other path. The repo uses *.ply.
+Download [ShapenetCorev2](https://shapenet.org)(*.obj). 
+Place them under `util/shapenet_renderer/data/`or any other path.
 
 ```
 cd util/shapenet_renderer/
-bash render_car.sh
-bash render_plane.sh
-bash render_chair.sh
+./render_car.sh car
+./render_plane.sh plane
+./render_chair.sh
 ```
 Move the renders accordingly to `data_root` paths (default = `./data/render_view200_r1.2/${class_id}`) as specified inside the config files inside `config/` directory.  
   
 #### Training
 ```
-bash scripts/train_shape_car.sh
-bash scripts/train_shape_chair.sh
-bash scripts/train_shape_plane.sh
+./scripts/train_shape_car.sh
+./scripts/train_shape_chair.sh
+./scripts/train_shape_plane.sh
 ```
 
 #### Inference
 
 ```
-bash scripts/render_shape_car.sh
-bash scripts/render_shape_chair.sh
-bash scripts/render_shape_plane.sh
+./scripts/render_shape_car.sh
+./scripts/render_shape_chair.sh
+./scripts/render_shape_plane.sh
 ```
 
 #### Evaluation
+`${class_name}` can be replaced by car, chair, or plane.
 
 ```
 cd evaluations/fid_scores/
-bash kid_${class_name}.sh
-bash fid_${class_name}.sh
+./kid_${class_name}.sh
+./fid_${class_name}.sh
 ```
 
 ### Objaverse
 Download the [G-buffer Objaverse dataset](https://github.com/modelscope/richdreamer/tree/main/dataset/gobjaverse).
 
 ```
-bash util/download_objaverse.sh
+bash scripts/download_objaverse.sh
 ```
 
 We only use part of the dataset and the data split is in [this file](./datasets/splits/objaverse/paper_train.txt).
@@ -72,13 +74,13 @@ For more details of the dataset, please refer to Section A.1 in the appendix of 
 The VAE training consists of two stages. For the detailed commands, see [VAE Training Script](./scripts/vae/train_dgx.sh). Note that after training, we pre-compute the latents for latent diffusion.
 
 ```
-bash scripts/vae/train_dgx.sh
+./scripts/vae/train_dgx.sh
 ```
 
 ##### LDM training
 
 ```
-bash scripts/ldm/train_dgx.sh
+./scripts/ldm/train_dgx.sh
 ```
 
 
@@ -102,5 +104,5 @@ Place them according to original path.
 To reproduce the results of Figure 6 in the paper:
 
 ```
-bash scripts/render_paper.sh
+./scripts/render_paper.sh
 ```
