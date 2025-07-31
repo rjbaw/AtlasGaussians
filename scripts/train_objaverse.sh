@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 set -euo pipefail
 
 format_time() {
@@ -12,11 +13,11 @@ format_time() {
 
 vae_start_ts=$(date +%s)
 
-log_dir="output/vae/shapenet/vae_car"
-config_path="config/shapenet/train_car_base.yaml"
-full_config="config/shapenet/train_car_full.yaml"
-dm_log_dir="output/ldm/shapenet/car"
-full_log_dir="output/vae/shapenet/vae_car_full"
+config_path="config/objaverse/train_18k_base.yaml"
+full_config="config/objaverse/train_18k_full.yaml"
+log_dir="output/vae/objaverse/vae_L16_ep001_7B7_kl1e-4_base"
+full_log_dir="output/vae/objaverse/vae_L16_ep001_7B7_kl1e-4_full"
+dm_log_dir="output/ldm/objaverse/ldm_kl1e-4_d512_m512_l16_d24_edm"
 
 echo ">>> Stage 0: generate data splits"
 python split.py --config "${config_path}" --ratio 0.8
